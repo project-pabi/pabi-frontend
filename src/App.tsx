@@ -1,36 +1,28 @@
-import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
+import React from "react";
 import "./App.css";
-import axios from "axios";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import NotFound from "./pages/NotFound/NotFound";
+import Write from "./pages/Write/Write";
 
 function App() {
-  const [hello, setHello] = useState("");
+  // const [hello, setHello] = useState("");
 
-  const fetchUsers = async () => {
-    const response = await axios.get("/hello");
-    setHello(response.data); // 데이터는 response.data 안에 들어있습니다.
-  };
+  // const fetchUsers = async () => {
+  //   const response = await axios.get("/hello");
+  //   setHello(response.data); // 데이터는 response.data 안에 들어있습니다.
+  // };
 
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+  // useEffect(() => {
+  //   fetchUsers();
+  // }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Write />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
   );
 }
 
