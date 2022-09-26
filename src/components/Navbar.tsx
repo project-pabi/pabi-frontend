@@ -1,6 +1,7 @@
 import { ReactComponent as Logo } from "./logo.svg";
 
 export default function Header() {
+
   return (
     <nav className="bg-white px-2 sm:px-4 py-2.5 fixed w-full  z-20 top-0 left-0 ">
       <div className="container flex flex-wrap justify-between items-center mx-auto h-28">
@@ -18,8 +19,7 @@ export default function Header() {
         </div>
         <div
           className="hidden justify-between items-center w-full md:flex md:w-auto md:order-1"
-          id="navbar-sticky"
-        >
+          id="navbar-sticky"        >
           <ul className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
             <li>
               <div className="block py-2 pr-4 pl-3 text-#000000 text-xl">
@@ -27,7 +27,7 @@ export default function Header() {
               </div>
             </li>
             <li>
-              <div className="block py-2 pr-4 pl-3 text-#000000 text-xl">
+              <div className="block py-2 pr-4 pl-3 text- text-xl">
                 진행 중인 매물
               </div>
             </li>
