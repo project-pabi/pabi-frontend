@@ -19,7 +19,7 @@ export default function Header() {
         </div>
         <div
           className="hidden justify-between items-center w-full md:flex md:w-auto md:order-1"
-          id="navbar-sticky"        >
+          id="navbar-sticky">
           <ul className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
             <li>
               <div className="block py-2 pr-4 pl-3 text-#000000 text-xl">
@@ -27,7 +27,7 @@ export default function Header() {
               </div>
             </li>
             <li>
-              <div className="block py-2 pr-4 pl-3 text- text-xl">
+              <div className="block py-2 pr-4 pl-3 text-#000000 text-xl">
                 진행 중인 매물
               </div>
             </li>
