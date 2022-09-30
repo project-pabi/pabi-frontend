@@ -1,5 +1,13 @@
-import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer/Footer";
+import Information from "../../components/Information/Information";
+import Navbar from "../../components/Navbar/Navbar";
 function Write() {
-  return <Navbar />;
+  return (
+    <>
+      <Navbar />
+      <Information />
+      <Footer />
+    </>
+  );
 }
 export default Write;
