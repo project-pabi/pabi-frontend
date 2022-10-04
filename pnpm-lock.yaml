@@ -3,7 +3,6 @@ lockfileVersion: 5.4
 specifiers:
   '@emotion/react': ^11.10.4
   '@emotion/styled': ^11.10.4
-  '@mui/base': 5.0.0-alpha.99
   '@mui/lab': 5.0.0-alpha.101
   '@mui/material': ^5.10.7
   '@testing-library/jest-dom': ^5.16.5
@@ -31,7 +30,6 @@ specifiers:
 dependencies:
   '@emotion/react': 11.10.4_axxkdcpdr7up57umjkldobkynm
   '@emotion/styled': 11.10.4_sn4wuyy54zwps25tv4w7lbiz6i
-  '@mui/base': 5.0.0-alpha.99_7ey2zzynotv32rpkwno45fsx4e
   '@mui/lab': 5.0.0-alpha.101_7g47ktvxgejelb3b2n6rycl75e
   '@mui/material': 5.10.7_af5ln35zuaotaffazii6n6bke4
   '@testing-library/jest-dom': 5.16.5
