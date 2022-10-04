@@ -14,9 +14,6 @@ export const SubTitle = tw.div`
   mb-[34px]
 `;
 export const TabTitle = styled.div`
-  /* font-bold
-text-[24px]
-leading-[36px] */
   font-size: 24px;
   font-weight: bold;
 `;
@@ -60,7 +57,6 @@ export const StyledTab = styled(Tab)`
     border-radius: 10px;
   }
 `;
-
 export const Label = styled.label`
   display: inline-block;
   cursor: pointer;
@@ -72,10 +68,12 @@ export const Label = styled.label`
   height: 44px;
   line-height: 44px;
 `;
-export const RadioBox = styled.input.attrs({
-  type: "radio",
-})`
-  & + label {
-    border: 2px solid blue;
+export const Radio = styled.input.attrs({ type: "radio" })`
+  display: none;
+  &:checked + ${Label} {
+    background: #ffffff;
+    border: 2px solid #0000d8;
+    color: #0000d8;
+    line-height: 40px;
   }
 `;

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import {
+  Label,
   NextButton,
-  RadioBox,
+  Radio,
   StyledTab,
   SubTitle,
   TabTitle,
@@ -10,15 +11,31 @@ import {
 } from "./Information.style";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Box } from "@mui/material";
+import CategoryKind from "./CategoryData";
 
 const Information = () => {
   const [value, setValue] = useState("1");
+  let [data, setData] = useState<string[]>([]);
+  let [inputValue, setInputValue] = useState("");
+  let [radioValue, setRadioValue] = useState("");
+
+  console.log(data);
+
+  // Tabs
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
-  console.log(value);
+  // NextButton
   const onIncrement = () => {
     setValue(String(Number(value) + 1));
+  };
+  // NameData
+  const nameData = () => {
+    setData([inputValue]);
+  };
+  // CategoryData
+  const CategoryData = () => {
+    setData([...data, radioValue]);
   };
   return (
     <div className="container max-w-[1200px] m-auto pt-[70px]">
@@ -47,6 +64,7 @@ const Information = () => {
             <StyledTab label="제품 설명 입력" value="5" />
           </TabList>
         </Box>
+        {/* 제품 이름 입력 */}
         <TabPanel
           value="1"
           className="text-center"
@@ -62,17 +80,46 @@ const Information = () => {
           <TextBox
             type={"text"}
             placeholder="물건의 이름이 무엇인가요?"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
           ></TextBox>
-          <NextButton onClick={onIncrement}>다음으로</NextButton>
+          <NextButton
+            onClick={() => {
+              onIncrement();
+              nameData();
+            }}
+          >
+            다음으로
+          </NextButton>
         </TabPanel>
-
+        {/* 제품 종류 선택 */}
         <TabPanel value="2" className="text-center">
-          <TabTitle>
+          <TabTitle className="mb-[50px]">
             물건의 <span style={{ color: "#0000D8" }}>종류</span>는 무엇인가요?
           </TabTitle>
-
-          <NextButton onClick={onIncrement}>다음으로</NextButton>
+          <ul className="flex justify-center">
+            {CategoryKind.map((i) => (
+              <li key={i.name} className="mr-[20px] last:mr-0">
+                <Radio
+                  id={i.name}
+                  value={i.name}
+                  checked={radioValue === `${i.name}`}
+                  onChange={(e) => setRadioValue(e.target.value)}
+                />
+                <Label htmlFor={i.name}>{i.name}</Label>
+              </li>
+            ))}
+          </ul>
+          <NextButton
+            onClick={() => {
+              onIncrement();
+              CategoryData();
+            }}
+          >
+            다음으로
+          </NextButton>
         </TabPanel>
+        {/* 제품 상태 선택 */}
         <TabPanel value="3" className="text-center">
           <TabTitle>
             물건의 <span style={{ color: "#0000D8" }}>상태</span>는 어떤가요?
