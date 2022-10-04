@@ -1,4 +1,6 @@
+import styled from "styled-components";
 import tw from "tailwind-styled-components";
+import { Tab } from "@mui/material";
 
 export const Title = tw.div`
   font-bold
@@ -11,10 +13,12 @@ export const SubTitle = tw.div`
   text-[#424242]
   mb-[34px]
 `;
-export const TabTitle = tw.div`
-font-bold
+export const TabTitle = styled.div`
+  /* font-bold
 text-[24px]
-leading-[36px]
+leading-[36px] */
+  font-size: 24px;
+  font-weight: bold;
 `;
 export const RadioButton = tw.li`
 w-[240px]
@@ -44,5 +48,34 @@ cursor-pointer
 justify-center
 mx-auto
 mt-[50px]
-mb-[200px]
+mb-[100px]
+`;
+export const StyledTab = styled(Tab)`
+  height: 50px;
+  width: 240px;
+  && {
+    background-color: #ffffff;
+    color: #616161;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+`;
+
+export const Label = styled.label`
+  display: inline-block;
+  cursor: pointer;
+  background: #eeeeee;
+  border-radius: 20px;
+  font-size: 16px;
+  color: #424242;
+  width: 130px;
+  height: 44px;
+  line-height: 44px;
+`;
+export const RadioBox = styled.input.attrs({
+  type: "radio",
+})`
+  & + label {
+    border: 2px solid blue;
+  }
 `;
