@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import {
+  Input,
   Label,
   NextButton,
-  Radio,
   StyledTab,
   SubTitle,
   TabTitle,
@@ -11,11 +11,13 @@ import {
 } from "./Information.style";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Box } from "@mui/material";
-import CategoryKind from "./CategoryData";
+import CategoryType from "./CategoryData";
+import StatusType from "./StatusData";
+import Upload from "./Upload";
 
 const Information = () => {
   const [value, setValue] = useState("1");
-  let [data, setData] = useState<string[]>([]);
+  let [data, setData] = useState<any[]>([]);
   let [inputValue, setInputValue] = useState("");
   let [radioValue, setRadioValue] = useState("");
 
@@ -98,9 +100,10 @@ const Information = () => {
             물건의 <span style={{ color: "#0000D8" }}>종류</span>는 무엇인가요?
           </TabTitle>
           <ul className="flex justify-center">
-            {CategoryKind.map((i) => (
+            {CategoryType.map((i) => (
               <li key={i.name} className="mr-[20px] last:mr-0">
-                <Radio
+                <Input
+                  type={"checkbox"}
                   id={i.name}
                   value={i.name}
                   checked={radioValue === `${i.name}`}
@@ -121,16 +124,26 @@ const Information = () => {
         </TabPanel>
         {/* 제품 상태 선택 */}
         <TabPanel value="3" className="text-center">
-          <TabTitle>
+          <TabTitle className="mb-[50px]">
             물건의 <span style={{ color: "#0000D8" }}>상태</span>는 어떤가요?
           </TabTitle>
+          <ul className="flex justify-center">
+            {StatusType.map((i) => (
+              <li key={i.name} className="mr-[20px] last:mr-0">
+                <Input type={"checkbox"} id={i.name} value={i.name} />
+                <Label htmlFor={i.name}>{i.name}</Label>
+              </li>
+            ))}
+          </ul>
           <NextButton onClick={onIncrement}>다음으로</NextButton>
         </TabPanel>
+        {/* 제품 사진 등록 */}
         <TabPanel value="4" className="text-center">
           <TabTitle>
             비우려는 물건의 <span style={{ color: "#0000D8" }}>모습</span>을
             보여주세요
           </TabTitle>
+          <Upload />
           <NextButton onClick={onIncrement}>다음으로</NextButton>
         </TabPanel>
         <TabPanel value="5" className="text-center">

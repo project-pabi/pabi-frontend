@@ -62,18 +62,19 @@ export const Label = styled.label`
   cursor: pointer;
   background: #eeeeee;
   border-radius: 20px;
+  border: 2px solid #ffffff;
   font-size: 16px;
   color: #424242;
-  width: 130px;
   height: 44px;
-  line-height: 44px;
+  padding: 10px 16px;
+  line-height: 20px;
 `;
-export const Radio = styled.input.attrs({ type: "radio" })`
+export const Input = styled.input`
   display: none;
   &:checked + ${Label} {
     background: #ffffff;
     border: 2px solid #0000d8;
     color: #0000d8;
-    line-height: 40px;
+    line-height: 20px;
   }
 `;
