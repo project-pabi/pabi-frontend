@@ -1,4 +1,4 @@
-const CategoryKind = [
+const CategoryType = [
   {
     name: "여성의류/잡화",
     value: "1",
@@ -16,4 +16,4 @@ const CategoryKind = [
     value: "4",
   },
 ];
-export default CategoryKind;
+export default CategoryType;
