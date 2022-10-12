@@ -2,6 +2,10 @@ import styled from "styled-components";
 import tw from "tailwind-styled-components";
 import { Tab } from "@mui/material";
 
+interface Props {
+  width: string;
+}
+
 export const Title = tw.div`
   font-bold
   text-[40px]
@@ -45,11 +49,11 @@ cursor-pointer
 justify-center
 mx-auto
 mt-[50px]
-mb-[100px]
 `;
-export const StyledTab = styled(Tab)`
+export const StyledTab = styled(Tab)<Props>`
+  width: ${(props) => props.width};
+  max-width: 400px;
   height: 50px;
-  width: 240px;
   && {
     background-color: #ffffff;
     color: #616161;
