@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   NextButton,
+  PrevButton,
   StyledTab,
   SubTitle,
   TabTitle,
@@ -22,10 +23,14 @@ const Method = () => {
   const onIncrement = () => {
     setValue(String(Number(value) + 1));
   };
+  // PrevButton
+  const onDecrement = () => {
+    setValue(String(Number(value) - 1));
+  };
   return (
-    <div className="container max-w-[1200px] m-auto py-[100px]">
-      <Title>상품정보 입력</Title>
-      <SubTitle>비우고 싶은 제품이 무엇인지 설명해주세요!</SubTitle>
+    <div className="container max-w-[1200px] m-auto py-[88px]">
+      <Title>경매방식 선택</Title>
+      <SubTitle>원하는 경매 방식을 선택하세요.</SubTitle>
       <TabContext value={value}>
         <Box>
           <TabList
@@ -58,20 +63,32 @@ const Method = () => {
           }}
         >
           <TabTitle>
-            비우려는 물건의 <span style={{ color: "#0000D8" }}>이름</span>을
-            알려주세요
+            어떤 <span style={{ color: "#0000D8" }}>방법</span>으로 비울까요?
           </TabTitle>
-          <TextBox
-            type={"text"}
-            placeholder="물건의 이름이 무엇인가요?"
-          ></TextBox>
-          <NextButton
-            onClick={() => {
-              onIncrement();
-            }}
-          >
-            다음으로
-          </NextButton>
+          <div className="flex justify-center mt-[88px]">
+            <div className="w-[280px] h-[380px] shadow-[0_4px_20px_4px_rgba(228,228,247,0.8)] mr-6">
+              실시간 거래
+            </div>
+            <div className="w-[280px] h-[380px] shadow-[0_4px_20px_4px_rgba(228,228,247,0.8)]">
+              일반 경매
+            </div>
+          </div>
+          <div className="flex justify-center mt-10 s">
+            <PrevButton
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
+              이전으로
+            </PrevButton>
+            <NextButton
+              onClick={() => {
+                onIncrement();
+              }}
+            >
+              다음으로
+            </NextButton>
+          </div>
         </TabPanel>
         {/* 제품 종류 선택 */}
         <TabPanel
@@ -82,7 +99,28 @@ const Method = () => {
             borderRadius: "20px",
             padding: "120px",
           }}
-        ></TabPanel>
+        >
+          <TabTitle>
+            경매를 <span style={{ color: "#0000D8" }}>시작할 가격</span>을
+            알려주세요
+          </TabTitle>
+          <div className="flex justify-center mt-10 s">
+            <PrevButton
+              onClick={() => {
+                onDecrement();
+              }}
+            >
+              이전으로
+            </PrevButton>
+            <NextButton
+              onClick={() => {
+                onIncrement();
+              }}
+            >
+              다음으로
+            </NextButton>
+          </div>
+        </TabPanel>
         <TabPanel
           value="3"
           className="text-center"
@@ -91,7 +129,27 @@ const Method = () => {
             borderRadius: "20px",
             padding: "120px",
           }}
-        ></TabPanel>
+        >
+          <TabTitle>
+            물건을 어떻게 <span style={{ color: "#0000D8" }}>전달</span>할까요?
+          </TabTitle>
+          <div className="flex justify-center mt-10 s">
+            <PrevButton
+              onClick={() => {
+                onDecrement();
+              }}
+            >
+              이전으로
+            </PrevButton>
+            <NextButton
+              onClick={() => {
+                onIncrement();
+              }}
+            >
+              다음으로
+            </NextButton>
+          </div>
+        </TabPanel>
       </TabContext>
     </div>
   );

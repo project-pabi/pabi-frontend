@@ -3,6 +3,7 @@ import {
   Input,
   Label,
   NextButton,
+  PrevButton,
   StyledTab,
   SubTitle,
   TabTitle,
@@ -33,6 +34,10 @@ const Information = () => {
   const onIncrement = () => {
     setValue(String(Number(value) + 1));
   };
+  // PrevButton
+  const onDecrement = () => {
+    setValue(String(Number(value) - 1));
+  };
   // NameData
   const nameData = () => {
     setData([inputValue]);
@@ -42,7 +47,7 @@ const Information = () => {
     setData([...data, radioValue]);
   };
   return (
-    <div className="container max-w-[1200px] m-auto py-[100px]">
+    <div className="container max-w-[1200px] m-auto py-[88px]">
       <Title>상품정보 입력</Title>
       <SubTitle>비우고 싶은 제품이 무엇인지 설명해주세요!</SubTitle>
       <TabContext value={value}>
@@ -75,7 +80,7 @@ const Information = () => {
           sx={{
             boxShadow: "0px 4px 20px 4px rgba(228, 228, 247, 0.8)",
             borderRadius: "20px",
-            padding: "120px",
+            padding: "88px",
           }}
         >
           <TabTitle>
@@ -88,14 +93,16 @@ const Information = () => {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           ></TextBox>
-          <NextButton
-            onClick={() => {
-              onIncrement();
-              nameData();
-            }}
-          >
-            다음으로
-          </NextButton>
+          <div className="flex justify-center mt-10">
+            <NextButton
+              onClick={() => {
+                onIncrement();
+                nameData();
+              }}
+            >
+              다음으로
+            </NextButton>
+          </div>
         </TabPanel>
         {/* 제품 종류 선택 */}
         <TabPanel
@@ -124,14 +131,17 @@ const Information = () => {
               </li>
             ))}
           </ul>
-          <NextButton
-            onClick={() => {
-              onIncrement();
-              CategoryData();
-            }}
-          >
-            다음으로
-          </NextButton>
+          <div className="flex justify-center mt-10">
+            <PrevButton onClick={onDecrement}>이전으로</PrevButton>
+            <NextButton
+              onClick={() => {
+                onIncrement();
+                CategoryData();
+              }}
+            >
+              다음으로
+            </NextButton>
+          </div>
         </TabPanel>
         {/* 제품 상태 선택 */}
         <TabPanel
@@ -154,7 +164,10 @@ const Information = () => {
               </li>
             ))}
           </ul>
-          <NextButton onClick={onIncrement}>다음으로</NextButton>
+          <div className="flex justify-center mt-10">
+            <PrevButton onClick={onDecrement}>이전으로</PrevButton>
+            <NextButton onClick={onIncrement}>다음으로</NextButton>
+          </div>
         </TabPanel>
         {/* 제품 사진 등록 */}
         <TabPanel
@@ -171,7 +184,10 @@ const Information = () => {
             보여주세요
           </TabTitle>
           <Upload />
-          <NextButton onClick={onIncrement}>다음으로</NextButton>
+          <div className="flex justify-center mt-10">
+            <PrevButton onClick={onDecrement}>이전으로</PrevButton>
+            <NextButton onClick={onIncrement}>다음으로</NextButton>
+          </div>
         </TabPanel>
         <TabPanel
           value="5"
@@ -191,13 +207,16 @@ const Information = () => {
             placeholder="물건에 대한 자세한 설명을 적어주세요."
             className="w-[430px] h-[200px] p-6 bg-[#f5f5f5]"
           ></textarea>
-          <NextButton
-            onClick={() => {
-              navigate("/select");
-            }}
-          >
-            다음으로
-          </NextButton>
+          <div className="flex justify-center mt-10">
+            <PrevButton onClick={onDecrement}>이전으로</PrevButton>
+            <NextButton
+              onClick={() => {
+                navigate("/select");
+              }}
+            >
+              다음으로
+            </NextButton>
+          </div>
         </TabPanel>
       </TabContext>
     </div>
