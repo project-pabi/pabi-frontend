@@ -1,8 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import NotFound from "./pages/NotFound/NotFound";
-import Write from "./pages/Write/Write";
+import Router from "./router";
 
 function App() {
   // const [hello, setHello] = useState("");
@@ -16,14 +14,7 @@ function App() {
   //   fetchUsers();
   // }, []);
 
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Write />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
-  );
+  return <Router />;
 }
 
 export default App;

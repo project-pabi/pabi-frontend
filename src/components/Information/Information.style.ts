@@ -2,6 +2,10 @@ import styled from "styled-components";
 import tw from "tailwind-styled-components";
 import { Tab } from "@mui/material";
 
+interface Props {
+  width: string;
+}
+
 export const Title = tw.div`
   font-bold
   text-[40px]
@@ -33,6 +37,18 @@ rounded-[10px]
 p-6
 mt-[55px]
 `;
+export const PrevButton = tw.div`
+w-[85px]
+h-[40px]
+text-[#0000D8]
+text-[14px]
+leading-[36px]
+rounded-[20px]
+cursor-pointer
+justify-center
+mr-5
+border-2 border-solid border-[#0000D8]
+`;
 export const NextButton = tw.div`
 w-[85px]
 h-[40px]
@@ -40,21 +56,19 @@ bg-[#0000D8]
 text-[#FFFFFF]
 text-[14px]
 leading-[40px]
-rounded-[10px]
+rounded-[20px]
 cursor-pointer
 justify-center
-mx-auto
-mt-[50px]
-mb-[100px]
 `;
-export const StyledTab = styled(Tab)`
-  height: 50px;
-  width: 240px;
+export const StyledTab = styled(Tab)<Props>`
+  width: ${(props) => props.width};
+  height: 48px;
   && {
     background-color: #ffffff;
     color: #616161;
     font-size: 16px;
     border-radius: 10px;
+    max-width: 400px;
   }
 `;
 export const Label = styled.label`

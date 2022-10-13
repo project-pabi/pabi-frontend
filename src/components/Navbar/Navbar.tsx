@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <nav className="border-solid border-b border-[#D9D9D9]">
-      <div className="max-w-[1700px] m-auto  h-[120px]">
+      <div className="max-w-[1700px] m-auto  h-[80px]">
         <NavContainer>
           <div className="flex items-center">
             <Link to="/">

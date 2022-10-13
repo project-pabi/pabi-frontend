@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="border-solid border-t border-[#D9D9D9] h-[120px] mt-[100px]">
+    <footer className="border-solid border-t border-[#D9D9D9] h-[100px]">
       <div className="max-w-[1700px] m-auto   text-[#757575] text-[12px] leading-[18px]">
         <ul className="flex items-center justify-center mt-[20px]">
           <li className="mr-[20px] ">팀소개</li>
