@@ -5,7 +5,6 @@ import { Tab } from "@mui/material";
 interface Props {
   width: string;
 }
-
 export const Title = tw.div`
   font-bold
   text-[40px]
@@ -40,19 +39,19 @@ mt-[55px]
 export const PrevButton = tw.div`
 w-[85px]
 h-[40px]
-text-[#0000D8]
+text-primary
 text-[14px]
 leading-[36px]
 rounded-[20px]
 cursor-pointer
 justify-center
 mr-5
-border-2 border-solid border-[#0000D8]
+border-2 border-solid border-primary
 `;
 export const NextButton = tw.div`
 w-[85px]
 h-[40px]
-bg-[#0000D8]
+bg-primary
 text-[#FFFFFF]
 text-[14px]
 leading-[40px]
@@ -65,7 +64,8 @@ export const StyledTab = styled(Tab)<Props>`
   height: 48px;
   ${tw`h-12`}
   && {
-    ${tw`bg-white text-[#616161] text-[16px] rounded-[10px] max-w-[400px]`}
+    max-width: 400px;
+    ${tw`bg-white text-[#616161] text-[16px] rounded-[10px]`}
   }
 `;
 export const Label = styled.label`
@@ -75,18 +75,22 @@ export const Label = styled.label`
     bg-[#eee]
     rounded-[20px]
     border-2
+    border-solid
     border-white
     text-[16px] 
     text-[#424242]
     h-11
-    px-2.5
-    py-4
+    px-4
+    py-2.5
     leading-[20px]
   `}
 `;
 export const Input = styled.input`
   display: none;
   &:checked + ${Label} {
-    ${tw`bg-white text-[#0000d8] border-2 border-[#0000d8] leading-[20px]`}
+    ${tw`bg-white text-primary border-2 border-solid border-primary leading-[20px]`}
   }
+`;
+export const Span = tw.span`
+text-primary
 `;
