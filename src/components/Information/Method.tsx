@@ -8,7 +8,6 @@ import {
   StyledTab,
   SubTitle,
   TabTitle,
-  TextBox,
   Title,
 } from "./Information.style";
 

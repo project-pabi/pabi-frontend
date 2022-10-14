@@ -47,7 +47,7 @@ const Information = () => {
     setData([...data, radioValue]);
   };
   return (
-    <div className="container max-w-[1200px] m-auto py-[88px]">
+    <div className="container max-w-[1200px] m-auto pt-[32px] pb-[88px]">
       <Title>상품정보 입력</Title>
       <SubTitle>비우고 싶은 제품이 무엇인지 설명해주세요!</SubTitle>
       <TabContext value={value}>
