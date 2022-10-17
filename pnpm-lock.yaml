@@ -22,8 +22,8 @@ specifiers:
   react-router-dom: ^6.4.1
   react-scripts: 5.0.1
   styled-components: ^5.3.5
-  tailwind-styled-components: ^2.2.0
   tailwindcss: ^3.1.8
+  twin.macro: 3.0.0-rc.5
   typescript: ^4.8.3
   web-vitals: ^2.1.4
 
@@ -45,6 +45,7 @@ dependencies:
   react-router-dom: 6.4.1_biqbaboplfbrettd7655fr4n2y
   react-scripts: 5.0.1_vpm4epegb5iztd7yhibv2hqiti
   styled-components: 5.3.5_7i5myeigehqah43i5u7wbekgba
+  twin.macro: 3.0.0-rc.5_tailwindcss@3.1.8
   typescript: 4.8.3
   web-vitals: 2.1.4
 
@@ -53,7 +54,6 @@ devDependencies:
   '@types/testing-library__jest-dom': 5.14.5
   autoprefixer: 10.4.12_postcss@8.4.16
   postcss: 8.4.16
-  tailwind-styled-components: 2.2.0_biqbaboplfbrettd7655fr4n2y
   tailwindcss: 3.1.8_postcss@8.4.16
 
 packages:
@@ -6705,6 +6705,7 @@ packages:
 
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
+    dev: false
 
   /js-yaml/3.14.1:
     resolution: {integrity: sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g==}
@@ -6927,6 +6928,10 @@ packages:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
     dev: false
 
+  /lodash.get/4.4.2:
+    resolution: {integrity: sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==}
+    dev: false
+
   /lodash.memoize/4.1.2:
     resolution: {integrity: sha512-t7j+NzmgnQzTAYXcsHYLgimltOV1MXHtlOWf6GjL9Kj8GK5FInw5JotxvbOs+IvV1/Dzo04/fCGfLVs7aXb4Ag==}
     dev: false
@@ -6952,6 +6957,7 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
+    dev: false
 
   /lower-case/2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
@@ -8451,6 +8457,7 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
 
   /react-error-overlay/6.0.11:
     resolution: {integrity: sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg==}
@@ -8610,6 +8617,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
+    dev: false
 
   /read-cache/1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
@@ -8903,6 +8911,7 @@ packages:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
     dependencies:
       loose-envify: 1.4.0
+    dev: false
 
   /schema-utils/2.7.0:
     resolution: {integrity: sha512-0ilKFI6QQF5nxDZLFn2dMjvc4hjg/Wkg7rHd3jK6/A4a1Hl9VFdQWvgB1UMGoU94pad1P/8N7fMcEnLnSiju8A==}
@@ -9444,21 +9453,6 @@ packages:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
     dev: false
 
-  /tailwind-merge/1.6.0:
-    resolution: {integrity: sha512-lfpys05uZMcVGIbgrrM/HlQGYKiPIcUhs76H1VrXo0gerpYkoLk4zjQTppdyAcBcmpzlzXJw7X0JniUKOr2hkg==}
-    dev: true
-
-  /tailwind-styled-components/2.2.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-Ogemwk0p69aU8WE/ooJZHjqstdJgT5R6HGU6TFz2uSnveSEtvW+C6aWOjGCvCr5H/bREv0IbbQ4yODknRrLBRQ==}
-    peerDependencies:
-      react: '>= 16.8.0'
-      react-dom: '>= 16.8.0'
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-      tailwind-merge: 1.6.0
-    dev: true
-
   /tailwindcss/3.1.8_postcss@8.4.16:
     resolution: {integrity: sha512-YSneUCZSFDYMwk+TGq8qYFdCA3yfBRdBlS7txSq0LUmzyeqRe3a8fBQzbz9M3WS/iFT4BNf/nmw9mEzrnSaC0g==}
     engines: {node: '>=12.13.0'}
@@ -9652,6 +9646,21 @@ packages:
     dependencies:
       tslib: 1.14.1
       typescript: 4.8.3
+    dev: false
+
+  /twin.macro/3.0.0-rc.5_tailwindcss@3.1.8:
+    resolution: {integrity: sha512-VqyWCcG6d/euWXaxH4LYVDF1HzzqRK6MjxRpwOgHzSW8jekw9U4bpyQlqJfQAEx4ztxHABZguyKVhyYsMuUhNQ==}
+    engines: {node: '>=16.14.0'}
+    peerDependencies:
+      tailwindcss: '>=3.1.8'
+    dependencies:
+      '@babel/template': 7.18.10
+      babel-plugin-macros: 3.1.0
+      chalk: 4.1.2
+      lodash.get: 4.4.2
+      lodash.merge: 4.6.2
+      postcss-selector-parser: 6.0.10
+      tailwindcss: 3.1.8_postcss@8.4.16
     dev: false
 
   /type-check/0.3.2:

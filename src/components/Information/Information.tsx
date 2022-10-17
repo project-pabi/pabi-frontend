@@ -4,6 +4,7 @@ import {
   Label,
   NextButton,
   PrevButton,
+  Span,
   StyledTab,
   SubTitle,
   TabTitle,
@@ -47,7 +48,7 @@ const Information = () => {
     setData([...data, radioValue]);
   };
   return (
-    <div className="container max-w-[1200px] m-auto py-[88px]">
+    <div className="container max-w-[1200px] m-auto pt-8 pb-[88px]">
       <Title>상품정보 입력</Title>
       <SubTitle>비우고 싶은 제품이 무엇인지 설명해주세요!</SubTitle>
       <TabContext value={value}>
@@ -84,10 +85,10 @@ const Information = () => {
           }}
         >
           <TabTitle>
-            비우려는 물건의 <span style={{ color: "#0000D8" }}>이름</span>을
-            알려주세요
+            비우려는 물건의 <Span>이름</Span>을 알려주세요
           </TabTitle>
           <TextBox
+            width={"430px"}
             type={"text"}
             placeholder="물건의 이름이 무엇인가요?"
             value={inputValue}
@@ -115,7 +116,7 @@ const Information = () => {
           }}
         >
           <TabTitle className="mb-[50px]">
-            물건의 <span style={{ color: "#0000D8" }}>종류</span>는 무엇인가요?
+            물건의 <Span>종류</Span>는 무엇인가요?
           </TabTitle>
           <ul className="flex justify-center">
             {CategoryType.map((i) => (
@@ -154,7 +155,7 @@ const Information = () => {
           }}
         >
           <TabTitle className="mb-[50px]">
-            물건의 <span style={{ color: "#0000D8" }}>상태</span>는 어떤가요?
+            물건의 <Span>상태</Span>는 어떤가요?
           </TabTitle>
           <ul className="flex justify-center">
             {StatusType.map((i) => (
@@ -180,8 +181,7 @@ const Information = () => {
           }}
         >
           <TabTitle>
-            비우려는 물건의 <span style={{ color: "#0000D8" }}>모습</span>을
-            보여주세요
+            비우려는 물건의 <Span>모습</Span>을 보여주세요
           </TabTitle>
           <Upload />
           <div className="flex justify-center mt-10">
@@ -200,13 +200,16 @@ const Information = () => {
         >
           <TabTitle>
             비우려는 물건에 대해
-            <span style={{ color: "#0000D8" }}> 하고싶은 말</span>이 있나요?
+            <Span> 하고싶은 말</Span>이 있나요?
           </TabTitle>
           <div className="mt-[50px] mb-2 text-[#616161]">상세설명</div>
           <textarea
             placeholder="물건에 대한 자세한 설명을 적어주세요."
             className="w-[430px] h-[200px] p-6 bg-[#f5f5f5]"
           ></textarea>
+          <div className="mt-[30px] pt-[30px] mb-2 text-[#616161] border-solid border-[#D9D9D9] border-t-[1px]">
+            키워드
+          </div>
           <div className="flex justify-center mt-10">
             <PrevButton onClick={onDecrement}>이전으로</PrevButton>
             <NextButton
