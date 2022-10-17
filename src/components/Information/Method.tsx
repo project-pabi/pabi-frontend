@@ -3,16 +3,22 @@ import { Box } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
+  ImgBox,
   NextButton,
   PrevButton,
+  Span,
   StyledTab,
   SubTitle,
   TabTitle,
+  TextBox,
   Title,
 } from "./Information.style";
+import Normal from "./Normal.png";
+import RealTime from "./RealTime.png";
 
 const Method = () => {
   const [value, setValue] = useState("1");
+  let [inputValue, setInputValue] = useState("");
   let navigate = useNavigate();
   // Tabs
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -26,8 +32,10 @@ const Method = () => {
   const onDecrement = () => {
     setValue(String(Number(value) - 1));
   };
+  // NumberInput
+
   return (
-    <div className="container max-w-[1200px] m-auto py-[88px]">
+    <div className="container max-w-[1200px] m-auto pt-8 pb-[88px]">
       <Title>경매방식 선택</Title>
       <SubTitle>원하는 경매 방식을 선택하세요.</SubTitle>
       <TabContext value={value}>
@@ -62,14 +70,24 @@ const Method = () => {
           }}
         >
           <TabTitle>
-            어떤 <span style={{ color: "#0000D8" }}>방법</span>으로 비울까요?
+            어떤 <Span>방법</Span>으로 비울까요?
           </TabTitle>
           <div className="flex justify-center mt-[88px]">
-            <div className="w-[280px] h-[380px] shadow-[0_4px_20px_4px_rgba(228,228,247,0.8)] mr-6">
-              실시간 거래
+            <div className="w-[280px] h-[380px] shadow-[0_4px_20px_4px_rgba(228,228,247,0.8)] mr-6 rounded-[10px] overflow-hidden">
+              <ImgBox background="linear-gradient(180deg, #7272e0 0%, rgba(25, 25, 25, 0.6) 100%)">
+                <img src={RealTime} alt="RealTime" className="mx-auto p-5" />
+              </ImgBox>
+              <div className="p-5 font-bold text-[#616161] text-xl">
+                실시간 경매
+              </div>
             </div>
-            <div className="w-[280px] h-[380px] shadow-[0_4px_20px_4px_rgba(228,228,247,0.8)]">
-              일반 경매
+            <div className="w-[280px] h-[380px] shadow-[0_4px_20px_4px_rgba(228,228,247,0.8)] rounded-[10px] overflow-hidden">
+              <ImgBox background="linear-gradient(180deg, #505050 0%, #D9D9D9 100%);">
+                <img src={Normal} alt="Normal" className="mx-auto p-5" />
+              </ImgBox>
+              <div className="p-5 font-bold text-[#616161] text-xl">
+                일반 경매
+              </div>
             </div>
           </div>
           <div className="flex justify-center mt-10 s">
@@ -100,9 +118,19 @@ const Method = () => {
           }}
         >
           <TabTitle>
-            경매를 <span style={{ color: "#0000D8" }}>시작할 가격</span>을
-            알려주세요
+            경매를 <Span>시작할 가격</Span>을 알려주세요
           </TabTitle>
+          <span className="font-bold text-2xl">시작 가격은</span>
+          <TextBox
+            width={"200px"}
+            type={"number"}
+            placeholder="10"
+            className="mx-5"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+          ></TextBox>
+          <span className="font-bold text-2xl">원 부터</span>
+
           <div className="flex justify-center mt-10 s">
             <PrevButton
               onClick={() => {
@@ -130,7 +158,7 @@ const Method = () => {
           }}
         >
           <TabTitle>
-            물건을 어떻게 <span style={{ color: "#0000D8" }}>전달</span>할까요?
+            물건을 어떻게 <Span>전달</Span>할까요?
           </TabTitle>
           <div className="flex justify-center mt-10 s">
             <PrevButton

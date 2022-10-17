@@ -88,6 +88,7 @@ const Information = () => {
             비우려는 물건의 <Span>이름</Span>을 알려주세요
           </TabTitle>
           <TextBox
+            width={"430px"}
             type={"text"}
             placeholder="물건의 이름이 무엇인가요?"
             value={inputValue}

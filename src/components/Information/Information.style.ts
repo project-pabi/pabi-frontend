@@ -2,9 +2,13 @@ import styled from "styled-components";
 import tw from "twin.macro";
 import { Tab } from "@mui/material";
 
-interface Props {
+interface WProps {
   width: string;
 }
+interface BProps {
+  background: string;
+}
+
 export const Title = tw.div`
   font-bold
   text-[40px]
@@ -28,13 +32,23 @@ bg-slate-400
 text-center
 rounded-[10px]
 `;
-export const TextBox = tw.input`
-w-[430px]
+export const TextBox = styled.input<WProps>`
+  width: ${(props) => props.width};
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  ${tw`
 h-[70px]
 bg-[#F5F5F5]
 rounded-[10px]
 p-6
 mt-[55px]
+`}
 `;
 export const PrevButton = tw.div`
 w-[85px]
@@ -59,7 +73,7 @@ rounded-[20px]
 cursor-pointer
 justify-center
 `;
-export const StyledTab = styled(Tab)<Props>`
+export const StyledTab = styled(Tab)<WProps>`
   width: ${(props) => props.width};
   height: 48px;
   ${tw`h-12`}
@@ -92,5 +106,8 @@ export const Input = styled.input`
   }
 `;
 export const Span = tw.span`
-text-primary
+  text-primary
+`;
+export const ImgBox = styled.div<BProps>`
+  background: ${(props) => props.background};
 `;
