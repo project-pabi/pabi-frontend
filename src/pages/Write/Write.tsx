@@ -1,13 +1,6 @@
-import Footer from "../../components/Footer/Footer";
-import Information from "../../components/Information/Information";
-import Navbar from "../../components/Navbar/Navbar";
+// import Information from "../../components/Information/Information";
+import NewInformation from "../../components/NewInformation/Information";
 function Write() {
-  return (
-    <>
-      <Navbar />
-      <Information />
-      <Footer />
-    </>
-  );
+  return <NewInformation />;
 }
 export default Write;
