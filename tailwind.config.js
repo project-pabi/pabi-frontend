@@ -6,20 +6,24 @@ module.exports = {
   darkMode: "class", // or 'media' or 'class'
   theme: {
     screens: {
-      sm: "640px",
-      md: "768px",
-      lg: "1024px",
-      xl: "1280px",
-      "2xl": "1536px",
+      //DEFAULT: "0px",
+      sm: "600px", // small tablet
+      md: "1240px", // medium laptop
+      lg: "1440px", // large desktop
+      // sm: "600px",
+      // md: "768px",
+      // lg: "1024px",
+      // xl: "1200px",
+      // "2xl": "1536px",
     },
     colors: ({ colors }) => ({
       inherit: colors.inherit,
       current: colors.current,
       transparent: colors.transparent,
-      black: colors.black,
+      //black: colors.black,
       white: colors.white,
       slate: colors.slate,
-      gray: colors.gray,
+      //gray: colors.gray,
       zinc: colors.zinc,
       neutral: colors.neutral,
       stone: colors.stone,
@@ -40,6 +44,51 @@ module.exports = {
       fuchsia: colors.fuchsia,
       pink: colors.pink,
       rose: colors.rose,
+      primary: {
+        // Bluealicious
+        100: "#E4E4F7",
+        200: "#C5C5F0",
+        300: "#A1A1E8",
+        400: "#7272E0",
+        500: "#0000D8",
+        600: "#0000C1",
+        700: "#0000A7",
+        800: "#000088",
+        900: "#000060",
+        variant: "#0000A7",
+      },
+      secondary: {
+        // Cyber Yellow
+        100: "#FFF6E4",
+        200: "#FFEEC5",
+        300: "#FFE6A1",
+        400: "#FFDD72",
+        500: "#FFD400",
+        600: "#E4BD00",
+        700: "#C5A400",
+        800: "#A18600",
+        900: "#725E00",
+        variant: "#C5A400",
+      },
+      gray: {
+        // Gray
+        100: "#F5F5F5",
+        200: "#EEE",
+        300: "#E0E0E0",
+        400: "#BDBDBD",
+        500: "#9E9E9E",
+        600: "#757575",
+        700: "#616161",
+        800: "#424242",
+        900: "#212121",
+      },
+      black: "#191919",
+      system: {
+        success: "#191919",
+        caution: "#212121",
+        error: "#ED4D4D",
+      },
+      background: "#FFF",
     }),
     columns: {
       auto: "auto",
@@ -341,7 +390,18 @@ module.exports = {
       150: "1.5",
       200: "2",
     },
-    container: {},
+    container: {
+      screens: {
+        lg: "1248px", // large desktop
+      },
+      center: true,
+      padding: {
+        DEFAULT: "1rem",
+        sm: "1.5rem",
+        md: "1.5rem",
+        lg: "1.5rem",
+      },
+    },
     content: {
       none: "none",
     },
