@@ -1,5 +1,5 @@
 type DefaultFieldType =
-  | "string"
+  | "text"
   | "number"
   | "radio"
   | "checkbox"
@@ -11,15 +11,64 @@ type ComplexFieldType = "complex";
 
 export type FieldType = DefaultFieldType | ComplexFieldType;
 
-type DefaultField = {
-  type: DefaultFieldType;
-  tabName?: string;
+type FieldListValue = {
+  key: number | string;
+  text: string;
+  label?: string;
+};
+
+export type TextField = {
+  type: "text";
+  tabName: string;
   title: string;
   accent: string;
+  hint: string;
   defaultValue?: "";
 };
 
-type SimpleField = DefaultField; //|| SomeField;
+export type NumberField = {
+  type: "number";
+  symbols: boolean;
+  tabName: string;
+  title: string;
+  accent: string;
+  hint: string;
+  defaultValue?: "";
+};
+
+export type RadioField = {
+  type: "radio";
+  values: FieldListValue[];
+  tabName: string;
+  title: string;
+  accent: string;
+  hint: string;
+  defaultValue?: "";
+};
+
+export type CheckboxField = {
+  type: "checkbox";
+  values: FieldListValue[];
+  tabName: string;
+  title: string;
+  accent: string;
+  hint: string;
+  defaultValue?: "";
+};
+
+export type SimpleField =
+  | TextField
+  | NumberField
+  | RadioField
+  | CheckboxField
+  | {
+      type: DefaultFieldType;
+      tabName: string;
+      title: string;
+      accent: string;
+      hint: string;
+      defaultValue?: "";
+    };
 
 type ComplexField = {
   type: ComplexFieldType;

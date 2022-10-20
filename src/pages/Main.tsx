@@ -5,7 +5,7 @@ export default function Main() {
   return (
     <>
       <Navbar />
-      <div className="lg:container px-4 sm:px-6 m-auto pt-[32px] pb-[88px]">
+      <div className="container m-auto pt-[32px] pb-[88px]">
         <Outlet />
       </div>
       <Footer />

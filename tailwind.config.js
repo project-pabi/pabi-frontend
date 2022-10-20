@@ -8,13 +8,11 @@ module.exports = {
     screens: {
       //DEFAULT: "0px",
       sm: "600px", // small tablet
-      md: "1240px", // medium laptop
-      lg: "1440px", // large desktop
-      // sm: "600px",
-      // md: "768px",
-      // lg: "1024px",
-      // xl: "1200px",
-      // "2xl": "1536px",
+      md: "768px", // big tablet
+      lg: "1024px", // ipad pro
+      xl: "1240px", // medium laptop
+      "2xl": "1440px", // large labtop, desktop
+      "3xl": "1920px", // QHD, 4K desktop
     },
     colors: ({ colors }) => ({
       inherit: colors.inherit,
@@ -391,15 +389,15 @@ module.exports = {
       200: "2",
     },
     container: {
-      screens: {
-        lg: "1248px", // large desktop
-      },
       center: true,
       padding: {
         DEFAULT: "1rem",
         sm: "1.5rem",
         md: "1.5rem",
         lg: "1.5rem",
+        xl: "0",
+        "2xl": "0",
+        "3xl": "0",
       },
     },
     content: {
@@ -1129,5 +1127,19 @@ module.exports = {
     "active",
     "disabled",
   ],
-  plugins: [],
+  plugins: [
+    function ({ addComponents }) {
+      addComponents({
+        ".container": {
+          maxWidth: "100%",
+          "@screen xl": {
+            maxWidth: "1080px",
+          },
+          "@screen 2xl": {
+            maxWidth: "1200px",
+          },
+        },
+      });
+    },
+  ],
 };
