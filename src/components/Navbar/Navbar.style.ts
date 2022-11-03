@@ -12,5 +12,5 @@ export const PabiLogo = tw.img`
   w-40 items-center 
 `;
 export const Menu = tw.li`
-  mr-10 last:mr-0 text-xl
+  mr-10 last:mr-0 text-xl cursor-pointer
 `;

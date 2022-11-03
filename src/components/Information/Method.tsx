@@ -2,6 +2,7 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Box } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import {
   ImgBox,
   NextButton,
@@ -44,13 +45,21 @@ const Method = () => {
             onChange={handleChange}
             aria-label="lab API tabs example"
             className="mb-10"
-            TabIndicatorProps={{ sx: { height: "0" } }}
+            TabIndicatorProps={{
+              sx: {
+                height: "0%",
+
+                borderRadius: "10px",
+              },
+            }}
             sx={{
               boxShadow: "0px 4px 20px 4px rgba(228, 228, 247, 0.8)",
               borderRadius: "10px",
+              zIndex: 1,
               "& button.Mui-selected": {
-                backgroundColor: "#0000D8",
+                zIndex: 2,
                 color: "#ffffff",
+                backgroundColor: "#0000D8",
               },
             }}
           >
