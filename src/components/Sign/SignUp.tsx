@@ -13,7 +13,6 @@ import {
 import Logo from "./logo.svg";
 import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
-import { Postcode } from "./Postcode";
 
 interface FormValues {
   nickname: string;
