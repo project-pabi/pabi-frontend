@@ -105,6 +105,21 @@ export const Input = styled.input`
     ${tw`bg-white text-primary border-2 border-solid border-primary leading-[20px]`}
   }
 `;
+export const CheckState = tw.div`
+  inline-block
+  cursor-pointer
+  bg-[#eee]
+  rounded-[20px]
+  border-2
+  border-solid
+  border-white
+  text-[16px] 
+  text-[#424242]
+  h-11
+  px-4
+  py-2.5
+  leading-[20px]
+`;
 export const Span = tw.span`
   text-primary
 `;
