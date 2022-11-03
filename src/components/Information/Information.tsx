@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  CheckState,
   Input,
   Label,
   NextButton,
@@ -15,7 +16,7 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Box } from "@mui/material";
 import CategoryType from "./CategoryData";
 import StatusType from "./StatusData";
-import Upload from "./Upload";
+import Dropzone from "./Dropzone";
 import { useNavigate } from "react-router-dom";
 
 const Information = () => {
@@ -23,9 +24,26 @@ const Information = () => {
   let [data, setData] = useState<any[]>([]);
   let [inputValue, setInputValue] = useState("");
   let [radioValue, setRadioValue] = useState("");
+  let [checkValue, setCheckValue] = useState<any>([]);
   let navigate = useNavigate();
 
-  console.log(data);
+  const handleCheck = (e: any) => {
+    let updatedList: any = [...checkValue];
+    if (e.target.checked) {
+      updatedList = [...checkValue, e.target.value];
+    } else {
+      updatedList.splice(checkValue.indexOf(e.target.value), 1);
+    }
+    setCheckValue(updatedList);
+  };
+  const checkedItems = checkValue.length
+    ? checkValue.map((a: any, i: any) => {
+        return a;
+      })
+    : "";
+
+  // console.log(checkValue);
+  console.log(checkedItems);
 
   // Tabs
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -57,13 +75,21 @@ const Information = () => {
             onChange={handleChange}
             aria-label="lab API tabs example"
             className="mb-10"
-            TabIndicatorProps={{ sx: { height: "0" } }}
+            TabIndicatorProps={{
+              sx: {
+                height: "0%",
+
+                borderRadius: "10px",
+              },
+            }}
             sx={{
               boxShadow: "0px 4px 20px 4px rgba(228, 228, 247, 0.8)",
               borderRadius: "10px",
+              zIndex: 1,
               "& button.Mui-selected": {
-                backgroundColor: "#0000D8",
+                zIndex: 2,
                 color: "#ffffff",
+                backgroundColor: "#0000D8",
               },
             }}
           >
@@ -157,10 +183,21 @@ const Information = () => {
           <TabTitle className="mb-[50px]">
             물건의 <Span>상태</Span>는 어떤가요?
           </TabTitle>
-          <ul className="flex justify-center">
+          <div className="w-[430px] min-h-[70px] my-0 mx-auto mb-[50px] bg-[#F5F5F5] rounded-[10px]">
+            {checkValue.map((i: any) => (
+              <CheckState>{checkedItems[i]}</CheckState>
+            ))}
+          </div>
+          <ul className="flex justify-center ">
             {StatusType.map((i) => (
               <li key={i.name} className="mr-[20px] last:mr-0">
-                <Input type={"checkbox"} id={i.name} value={i.name} />
+                <Input
+                  type={"checkbox"}
+                  id={i.name}
+                  value={i.name}
+                  checked={checkValue.includes(i.name) ? true : false}
+                  onChange={handleCheck}
+                />
                 <Label htmlFor={i.name}>{i.name}</Label>
               </li>
             ))}
@@ -183,7 +220,7 @@ const Information = () => {
           <TabTitle>
             비우려는 물건의 <Span>모습</Span>을 보여주세요
           </TabTitle>
-          <Upload />
+          <Dropzone />
           <div className="flex justify-center mt-10">
             <PrevButton onClick={onDecrement}>이전으로</PrevButton>
             <NextButton onClick={onIncrement}>다음으로</NextButton>
