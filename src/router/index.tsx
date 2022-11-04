@@ -3,13 +3,13 @@ import NotFound from "../pages/NotFound/NotFound";
 import Main from "../pages/Main";
 import Login from "../pages/Member/login";
 import Select from "../pages/Select/Select";
-import Write from "../pages/Write/Write";
+import WriteRoute from "@router/write/write";
 export default function index() {
   return (
     <Router>
       <Routes>
         <Route path="" element={<Main />}>
-          <Route path="" element={<Write />} />
+          {WriteRoute}
           <Route path="select" element={<Select />} />
         </Route>
         <Route path="login" element={<Login />} />

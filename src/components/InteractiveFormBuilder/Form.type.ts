@@ -17,71 +17,55 @@ type FieldListValue = {
   label?: string;
 };
 
-export type TextField = {
-  type: "text";
+type FieldCommonValue = {
+  key: string;
   tabName: string;
   title: string;
   accent: string;
   hint: string;
-  defaultValue?: "";
+  required: boolean;
+  validate: (a: object) => boolean;
 };
+
+export type TextField = {
+  type: "text";
+  defaultValue?: string;
+} & FieldCommonValue;
 
 export type NumberField = {
   type: "number";
   symbols: boolean;
-  tabName: string;
-  title: string;
-  accent: string;
-  hint: string;
-  defaultValue?: "";
-};
+  defaultValue?: number;
+} & FieldCommonValue;
 
 export type RadioField = {
   type: "radio";
   values: FieldListValue[];
-  tabName: string;
-  title: string;
-  accent: string;
-  hint: string;
-  defaultValue?: "";
-};
+  defaultValue?: number | string;
+} & FieldCommonValue;
 
 export type CheckboxField = {
   type: "checkbox";
   values: FieldListValue[];
-  tabName: string;
-  title: string;
-  accent: string;
-  hint: string;
-  defaultValue?: "";
-};
+  defaultValue?: number[] | string[];
+} & FieldCommonValue;
 
-export type SimpleField =
-  | TextField
-  | NumberField
-  | RadioField
-  | CheckboxField
-  | {
-      type: DefaultFieldType;
-      tabName: string;
-      title: string;
-      accent: string;
-      hint: string;
-      defaultValue?: "";
-    };
+export type SimpleField = TextField | NumberField | RadioField | CheckboxField;
 
 type ComplexField = {
+  key: string;
   type: ComplexFieldType;
   subField: SimpleField[];
   tabName: string;
   title: string;
-  accent: string;
-  defaultValue?: "";
+  accent?: string;
+  required: boolean;
 };
 
 export type Field = SimpleField | ComplexField;
 
 export type Tab = {
+  key: string;
   title: string;
   subTitle: string;
   fields: Field[];
