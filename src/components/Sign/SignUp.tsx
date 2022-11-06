@@ -13,7 +13,6 @@ import {
 import Logo from "./logo.svg";
 import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
-import { Postcode } from "./Postcode";
 
 interface FormValues {
   nickname: string;
@@ -21,6 +20,8 @@ interface FormValues {
   password: string;
   password_confirm: string;
   address: string;
+  address_detail: string;
+  agree: boolean;
 }
 
 export default function SignUp() {
@@ -31,6 +32,8 @@ export default function SignUp() {
     register,
     handleSubmit,
     watch,
+    setFocus,
+    control,
     formState: { errors },
   } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
@@ -45,6 +48,7 @@ export default function SignUp() {
       setVisible((visible) => !visible);
     }
   }, [address, visible]);
+
   const open = useDaumPostcodePopup(
     "https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"
   );
@@ -69,7 +73,11 @@ export default function SignUp() {
     open({ onComplete: handleComplete });
   };
 
-  console.log(address);
+  // focus
+  const focusEvent = () => {
+    setFocus("address");
+  };
+
   return (
     <div className="bg-[#C5C5F0] pt-8">
       <Link to="/">
@@ -84,6 +92,7 @@ export default function SignUp() {
               id="nickname"
               type="text"
               placeholder="닉네임을 입력해주세요"
+              className={errors.nickname && "border-2 border-[#ED4D4D]"}
               {...register("nickname", { required: true })}
             />
             {errors.nickname && (
@@ -96,6 +105,7 @@ export default function SignUp() {
               id="email"
               type="email"
               placeholder="예: user@pa-bi.com"
+              className={errors.email && "border-2 border-[#ED4D4D]"}
               {...register("email", {
                 required: true,
                 pattern: /^[\w.]+@[\w.]+\.[A-Za-z]{2,3}$/i,
@@ -114,6 +124,7 @@ export default function SignUp() {
               id="password"
               type="password"
               placeholder="비밀번호를 입력해주세요"
+              className={errors.password && "border-2 border-[#ED4D4D]"}
               {...register("password", {
                 required: true,
                 minLength: 8,
@@ -136,6 +147,7 @@ export default function SignUp() {
               id="password_confirm"
               type="password"
               placeholder="비밀번호를 한번 더 입력해주세요"
+              className={errors.password_confirm && "border-2 border-[#ED4D4D]"}
               {...register("password_confirm", {
                 required: true,
                 validate: (value) => value === password.current,
@@ -160,6 +172,7 @@ export default function SignUp() {
                 type="text"
                 value={address}
                 placeholder="주소"
+                className={errors.address && "border-2 border-[#ED4D4D]"}
                 readOnly
                 {...register("address")}
               />
@@ -168,7 +181,8 @@ export default function SignUp() {
               <Input
                 type="text"
                 placeholder="상세주소"
-                // {...register("address")}
+                className={errors.address_detail && "border-2 border-[#ED4D4D]"}
+                {...register("address_detail")}
               />
             )}
             {visible === false ? (
@@ -177,6 +191,7 @@ export default function SignUp() {
                 className="bg-[#A1A1E8]"
                 onClick={() => {
                   handleClick();
+                  focusEvent();
                 }}
               >
                 🍳주소 검색
@@ -187,6 +202,7 @@ export default function SignUp() {
                 className="bg-[#A1A1E8]"
                 onClick={() => {
                   handleClick();
+                  focusEvent();
                 }}
               >
                 🍳재검색
@@ -194,14 +210,23 @@ export default function SignUp() {
             )}
           </div>
           <span className="text-xs text-[#757575]">
-            물건을 구매한 경우 배송 주소가 자동으로 입력되어 편리하게 <br />{" "}
+            물건을 구매한 경우 배송 주소가 자동으로 입력되어 편리하게 <br />
             이용하실 수 있습니다.
           </span>
-          <div className="text-center text-sm text-[#757575] py-6">
-            <input type="checkbox" placeholder="agree" />
-            서비스 이용, 개인정보 수집, 위치정보 활용 동의
-            <span className=" text-primary"> (더보기)</span>
+          <div className="flex text-sm text-[#757575] py-6 items-center justify-center">
+            <input
+              id="agree"
+              placeholder="agree"
+              type="checkbox"
+              className="mr-1"
+              {...register("agree", {})}
+            />
+            <Label htmlFor="agree">
+              서비스 이용, 개인정보 수집, 위치정보 활용 동의
+              <span className=" text-primary"> (더보기)</span>
+            </Label>
           </div>
+
           <Button className="bg-[#0000D8]" type="submit">
             회원가입 하기
           </Button>
