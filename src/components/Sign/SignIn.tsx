@@ -1,15 +1,18 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import {
   Button,
+  ErrorMessage,
   Input,
   PabiLogo,
   SignInContainer,
   SignUp,
   Title,
+  WarnIcon,
 } from "./SignIn.style";
 import Logo from "./logo.svg";
 import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
+import warn from "./warn.png";
 
 interface FormValues {
   email: string;
@@ -33,20 +36,25 @@ export default function SignIn() {
         <Title>로그인</Title>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-6">
+            {errors.email && <WarnIcon src={warn} />}
             <Input
               id="email"
-              type="email"
+              type="text"
               placeholder="아이디"
               className={errors.email && "border-2 border-[#ED4D4D]"}
-              {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
+              {...register("email", {
+                required: true,
+                pattern: /^[\w.]+@[\w.]+\.[A-Za-z]{2,3}$/i,
+              })}
             />
             {errors.email && (
-              <div className="text-[#ED4D4D]">
+              <ErrorMessage className="text-[#ED4D4D]">
                 올바르지 않은 이메일 형식입니다.
-              </div>
+              </ErrorMessage>
             )}
           </div>
           <div className="mb-4">
+            {errors.password && <WarnIcon src={warn} />}
             <Input
               id="password"
               type="password"
@@ -55,7 +63,9 @@ export default function SignIn() {
               {...register("password", { required: true })}
             />
             {errors.password && (
-              <div className="text-[#ED4D4D]">비밀번호를 입력해주세요.</div>
+              <ErrorMessage className="text-[#ED4D4D]">
+                비밀번호를 입력해주세요.
+              </ErrorMessage>
             )}
           </div>
           <div className="flex justify-between items-center">

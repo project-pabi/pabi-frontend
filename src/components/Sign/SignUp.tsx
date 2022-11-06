@@ -7,12 +7,17 @@ import {
   Input,
   Label,
   PabiLogo,
+  ReSearchIcon,
+  SearchIcon,
   SignInContainer,
   Title,
+  WarnIcon,
 } from "./SignUp.style";
 import Logo from "./logo.svg";
 import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
+import warn from "./warn.png";
+import search from "./search.png";
 
 interface FormValues {
   nickname: string;
@@ -21,19 +26,18 @@ interface FormValues {
   password_confirm: string;
   address: string;
   address_detail: string;
-  agree: boolean;
 }
 
 export default function SignUp() {
   const [address, setAddress] = useState("");
   const [visible, setVisible] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
   // form
   const {
     register,
     handleSubmit,
     watch,
     setFocus,
-    control,
     formState: { errors },
   } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
@@ -88,6 +92,7 @@ export default function SignUp() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-2">
             <Label>닉네임</Label>
+            {errors.nickname && <WarnIcon src={warn} />}
             <Input
               id="nickname"
               type="text"
@@ -101,6 +106,7 @@ export default function SignUp() {
           </div>
           <div className="mb-2">
             <Label>아이디(이메일)</Label>
+            {errors.email && <WarnIcon src={warn} />}
             <Input
               id="email"
               type="email"
@@ -111,6 +117,7 @@ export default function SignUp() {
                 pattern: /^[\w.]+@[\w.]+\.[A-Za-z]{2,3}$/i,
               })}
             />
+
             {errors.email && errors.email.type === "required" && (
               <ErrorMessage>이메일을 입력해주세요.</ErrorMessage>
             )}
@@ -120,6 +127,7 @@ export default function SignUp() {
           </div>
           <div className="mb-2">
             <Label>비밀번호</Label>
+            {errors.password && <WarnIcon src={warn} />}
             <Input
               id="password"
               type="password"
@@ -143,6 +151,7 @@ export default function SignUp() {
           </div>
           <div className="mb-2">
             <Label>비밀번호 확인</Label>
+            {errors.password_confirm && <WarnIcon src={warn} />}
             <Input
               id="password_confirm"
               type="password"
@@ -194,19 +203,20 @@ export default function SignUp() {
                   focusEvent();
                 }}
               >
-                🍳주소 검색
+                <SearchIcon src={search} />
+                주소 검색
               </Button>
             ) : (
-              <Button
+              <button
                 type="button"
-                className="bg-[#A1A1E8]"
+                className="bg-primary w-[95px] h-[32px] rounded-[20px] text-[#ffffff] text-sm mt-3 pl-4"
                 onClick={() => {
                   handleClick();
                   focusEvent();
                 }}
               >
-                🍳재검색
-              </Button>
+                <ReSearchIcon src={search} /> 재검색
+              </button>
             )}
           </div>
           <span className="text-xs text-[#757575]">
@@ -215,21 +225,30 @@ export default function SignUp() {
           </span>
           <div className="flex text-sm text-[#757575] py-6 items-center justify-center">
             <input
+              onClick={() => {
+                setIsClicked(!isClicked);
+              }}
               id="agree"
               placeholder="agree"
               type="checkbox"
               className="mr-1"
-              {...register("agree", {})}
             />
+
             <Label htmlFor="agree">
               서비스 이용, 개인정보 수집, 위치정보 활용 동의
               <span className=" text-primary"> (더보기)</span>
             </Label>
           </div>
 
-          <Button className="bg-[#0000D8]" type="submit">
-            회원가입 하기
-          </Button>
+          {isClicked === false ? (
+            <Button className="bg-[#BDBDBD] " type="submit" disabled>
+              회원가입 하기
+            </Button>
+          ) : (
+            <Button className="bg-[#0000D8] " type="submit">
+              회원가입 하기
+            </Button>
+          )}
         </form>
       </SignInContainer>
       <Footer />
