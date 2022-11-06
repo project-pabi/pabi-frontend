@@ -12,11 +12,18 @@ export const PabiLogo = tw.img`
 w-[100px] h-10
 `;
 export const Input = tw.input`
-w-[400px] h-[70px] bg-[#ffffff] rounded-[20px] p-6  
+w-[400px] h-[70px] bg-[#ffffff] rounded-[20px] p-6 border-2
+focus:(outline-none border-[#0000D8])
+`;
+export const ErrorMessage = tw.div`
+text-[#ED4D4D] ml-6 mt-1 text-xs
 `;
 export const Button = tw.button`
 w-[400px] h-[70px] bg-[#A1A1E8] rounded-[20px] p-6 text-center text-[#ffffff] mt-[70px]
 `;
 export const SignUp = tw.button`
 w-[400px] h-[70px] bg-[#0000D8] rounded-[20px] p-6 text-center text-[#ffffff]
+`;
+export const WarnIcon = tw.img`
+absolute ml-[350px] mt-[25px]
 `;
