@@ -37,6 +37,7 @@ export default function SignIn() {
               id="email"
               type="email"
               placeholder="아이디"
+              className={errors.email && "border-2 border-[#ED4D4D]"}
               {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
             />
             {errors.email && (
@@ -50,6 +51,7 @@ export default function SignIn() {
               id="password"
               type="password"
               placeholder="비밀번호"
+              className={errors.password && "border-2 border-[#ED4D4D]"}
               {...register("password", { required: true })}
             />
             {errors.password && (

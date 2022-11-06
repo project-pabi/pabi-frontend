@@ -12,7 +12,7 @@ export const PabiLogo = tw.img`
 max-w-[100px] h-10 mx-auto my-0
 `;
 export const Input = tw.input`
-w-full h-12 bg-[#ffffff] rounded-[20px] py-[13.5px] px-6 mt-2 text-[14px]
+w-full h-12 bg-[#ffffff] rounded-[20px] py-[13.5px] px-6 mt-2 text-[14px] border-2
 `;
 export const Button = tw.button`
 w-full h-12 rounded-[20px] py-[13.5px] text-center text-[#ffffff] mt-2
