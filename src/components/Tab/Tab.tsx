@@ -1,27 +1,41 @@
-import React, { FC, ReactNode, ReactElement } from "react";
-import tw from "twin.macro";
-import styled from "styled-components";
+import React, { FC, ReactNode, forwardRef } from 'react';
+import tw from 'twin.macro';
+import styled from 'styled-components';
 
 interface TabProps {
   children: ReactNode;
   onClick?: (event: React.MouseEvent<HTMLElement>) => any;
   className?: string;
   attributes?: any;
+  isSelect?: boolean;
+  selectClass?: string;
+  unselectClass?: string;
 }
 
 interface TabButtonProps {
   className?: any;
+  isSelect?: boolean;
 }
 
-const TabButtton = styled.button(({ className }: TabButtonProps) => [
+const TabButtton = styled.button(({ className, isSelect }: TabButtonProps) => [
   className && tw`${className}`,
   tw`
-    h-full
-  `,
+      h-full
+      bg-transparent
+      z-10
+    `,
 ]);
 
-const Tab: FC<TabProps> = ({ children, onClick, attributes, className }) => {
-  console.log(className);
+export type Ref = HTMLButtonElement;
+const Tab: FC<TabProps> = ({
+  children,
+  onClick,
+  attributes,
+  className = '',
+  isSelect = false,
+  selectClass = '',
+  unselectClass = '',
+}) => {
   return (
     <TabButtton
       onClick={(event: React.MouseEvent<HTMLElement>) => {
@@ -30,13 +44,10 @@ const Tab: FC<TabProps> = ({ children, onClick, attributes, className }) => {
         }
       }}
       {...attributes}
-      className={className}
-    >
-      {attributes?.className}
+      className={className + (isSelect ? selectClass : unselectClass)}>
       {children}
     </TabButtton>
   );
 };
-
 export default Tab;
 export type { TabProps };

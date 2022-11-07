@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import tw from "twin.macro";
-import { Tab } from "@mui/material";
+import styled from 'styled-components';
+import tw from 'twin.macro';
+import { Tab } from '@mui/material';
 
 export const Title = tw.div`
   font-bold
@@ -17,6 +17,11 @@ export const TabTitle = tw.div`
   text-[24px]
   font-bold
 `;
+
+export const TitleHighlight = tw.span`
+  text-primary
+`;
+
 export const RadioButton = tw.li`
 w-[240px]
 h-[50px]
@@ -45,7 +50,7 @@ justify-center
 mr-5
 border-2 border-solid border-[#0000D8]
 `;
-export const NextButton = tw.div`
+export const NextButton = tw.button`
 w-[85px]
 h-[40px]
 bg-[#0000D8]

@@ -1,10 +1,10 @@
-import { Outlet } from "react-router-dom";
-import { StateMachineProvider, createStore } from "little-state-machine";
+import { Outlet } from 'react-router-dom';
+import { StateMachineProvider, createStore } from 'little-state-machine';
 
 createStore({
   data: {
-    name: "",
-    category: "",
+    name: '',
+    category: '',
   },
 });
 
