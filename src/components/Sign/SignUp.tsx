@@ -14,10 +14,11 @@ import {
   WarnIcon,
 } from "./SignUp.style";
 import Logo from "./logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import warn from "./warn.png";
 import search from "./search.png";
+import axios from "axios";
 
 interface FormValues {
   nickname: string;
@@ -25,13 +26,15 @@ interface FormValues {
   password: string;
   password_confirm: string;
   address: string;
-  address_detail: string;
+  addressEtc: string;
 }
 
 export default function SignUp() {
   const [address, setAddress] = useState("");
   const [visible, setVisible] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
+  const [zipcode, setZipcode] = useState();
+  const navigate = useNavigate();
   // form
   const {
     register,
@@ -40,7 +43,26 @@ export default function SignUp() {
     setFocus,
     formState: { errors },
   } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    axios
+      .post("http://localhost:8400/", {
+        email: data.email,
+        nickName: data.nickname,
+        password: data.password,
+        address: {
+          address: data.address,
+          addressEtc: data.addressEtc,
+          zipcode: zipcode,
+        },
+      })
+      .then((response) => {
+        navigate("/signend");
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const password = useRef<string>();
   password.current = watch("password");
   // address
@@ -59,6 +81,7 @@ export default function SignUp() {
   const handleComplete = (data: any) => {
     let fullAddress = data.address;
     let extraAddress = "";
+    let zonecode = data.zonecode;
 
     if (data.addressType === "R") {
       if (data.bname !== "") {
@@ -70,9 +93,9 @@ export default function SignUp() {
       }
       fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
       setAddress(fullAddress);
+      setZipcode(zonecode);
     }
   };
-
   const handleClick = () => {
     open({ onComplete: handleComplete });
   };
@@ -190,8 +213,8 @@ export default function SignUp() {
               <Input
                 type="text"
                 placeholder="상세주소"
-                className={errors.address_detail && "border-2 border-[#ED4D4D]"}
-                {...register("address_detail")}
+                className={errors.addressEtc && "border-2 border-[#ED4D4D]"}
+                {...register("addressEtc")}
               />
             )}
             {visible === false ? (
