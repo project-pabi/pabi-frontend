@@ -7,6 +7,7 @@ import { cloneDeep, debounce } from 'lodash';
 interface Props {
   children: ReactElement[];
   className?: string;
+  tabIndex: number;
 }
 
 interface TabsProps {
@@ -40,8 +41,7 @@ const Tabs = styled.div<TabsProps>`
 
 export type Ref = HTMLDivElement;
 
-const TabList: FC<Props> = ({ children, className }) => {
-  let [tabIndex, setTabIndex] = useState<number>(0);
+const TabList: FC<Props> = ({ children, className, tabIndex }) => {
   let [tabWidth, setTabWidth] = useState<number>(0);
   const tabRef = useRef<Ref>(null);
   const childrenCount = React.Children.count(children);
@@ -69,18 +69,10 @@ const TabList: FC<Props> = ({ children, className }) => {
     };
   }, []);
 
-  const childrenAddClassname = React.Children.map(children, (item: ReactElement, index: number) => {
+  const childrenAddClassname = React.Children.map(children, (item: ReactElement) => {
     const itemProps: TabProps = cloneDeep(item.props);
-    itemProps.isSelect = tabIndex == index;
     itemProps.selectClass = 'text-white';
     itemProps.unselectClass = 'text-gray-700';
-    const itemOnClick = itemProps.onClick;
-    itemProps.onClick = (event: React.MouseEvent<HTMLElement>): any => {
-      setTabIndex(index);
-      if (itemOnClick) {
-        return itemOnClick(event);
-      }
-    };
     const className = `flex-grow justify-center items-center transition duration-500 ${
       itemProps.className ? itemProps.className : ''
     }`;

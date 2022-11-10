@@ -13,6 +13,7 @@ import {
   TitleHighlight,
   Title,
 } from '../NewInformation/Information.style';
+import { Status } from './Status.type';
 import { useNavigate } from 'react-router-dom';
 import { Categorys } from './Category.type';
 
@@ -22,7 +23,7 @@ const Information = (props: any) => {
   let navigate = useNavigate();
   const onSubmit = (data: any) => {
     console.log(data);
-    navigate('../state');
+    navigate('../photo');
   };
 
   return (
@@ -31,16 +32,17 @@ const Information = (props: any) => {
         <TabTitle className="mb-[50px]">
           물건의 <TitleHighlight>종류</TitleHighlight>는 무엇인가요?
         </TabTitle>
+
         <ul className="flex justify-center">
-          {Categorys.map((i) => (
-            <li key={i} className="mr-[20px] last:mr-0">
-              <Input type={'checkbox'} id={i} value={i} {...register('category')} />
-              <Label htmlFor={i}>{i}</Label>
+          {Status.map((status) => (
+            <li key={status} className="mr-[20px] last:mr-0">
+              <Input type={'checkbox'} id={status} value={status} {...register('state')} />
+              <Label htmlFor={status}>{status}</Label>
             </li>
           ))}
         </ul>
         <div className="flex justify-center mt-10">
-          <PrevButton onClick={() => navigate('../name')}>이전으로</PrevButton>
+          <PrevButton onClick={() => navigate('../category')}>이전으로</PrevButton>
           <NextButton type="submit">다음으로</NextButton>
         </div>
       </form>
