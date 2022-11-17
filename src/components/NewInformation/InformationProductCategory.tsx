@@ -12,9 +12,9 @@ import {
   TextBox,
   TitleHighlight,
   Title,
-} from '../NewInformation/Information.style';
+} from './Information.style';
 import { useNavigate } from 'react-router-dom';
-import { Categorys } from './Category.type';
+import { Category, categorys } from './Category.type';
 
 const Information = (props: any) => {
   const { register, handleSubmit } = useForm();
@@ -32,10 +32,10 @@ const Information = (props: any) => {
           물건의 <TitleHighlight>종류</TitleHighlight>는 무엇인가요?
         </TabTitle>
         <ul className="flex justify-center">
-          {Categorys.map((i) => (
-            <li key={i} className="mr-[20px] last:mr-0">
-              <Input type={'checkbox'} id={i} value={i} {...register('category')} />
-              <Label htmlFor={i}>{i}</Label>
+          {categorys.map((key) => (
+            <li key={key} className="mr-[20px] last:mr-0">
+              <Input type={'checkbox'} id={key} value={key} {...register('category')} />
+              <Label htmlFor={key}>{Category[key]}</Label>
             </li>
           ))}
         </ul>

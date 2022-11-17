@@ -12,10 +12,10 @@ import {
   TextBox,
   TitleHighlight,
   Title,
-} from '../NewInformation/Information.style';
+} from './Information.style';
 import { Status } from './Status.type';
 import { useNavigate } from 'react-router-dom';
-import { Categorys } from './Category.type';
+import { Category } from './Category.type';
 
 const Information = (props: any) => {
   const { register, handleSubmit } = useForm();
@@ -23,14 +23,14 @@ const Information = (props: any) => {
   let navigate = useNavigate();
   const onSubmit = (data: any) => {
     console.log(data);
-    navigate('../photo');
+    navigate('../../auction/type');
   };
 
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <TabTitle className="mb-[50px]">
-          물건의 <TitleHighlight>종류</TitleHighlight>는 무엇인가요?
+          비우려는 물건에 대해 <TitleHighlight>하고싶은 말</TitleHighlight>이 있나요?
         </TabTitle>
 
         <ul className="flex justify-center">
@@ -42,7 +42,7 @@ const Information = (props: any) => {
           ))}
         </ul>
         <div className="flex justify-center mt-10">
-          <PrevButton onClick={() => navigate('../category')}>이전으로</PrevButton>
+          <PrevButton onClick={() => navigate('../photo')}>이전으로</PrevButton>
           <NextButton type="submit">다음으로</NextButton>
         </div>
       </form>

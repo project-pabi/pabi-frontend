@@ -7,19 +7,24 @@ import { cloneDeep, debounce } from 'lodash';
 interface Props {
   children: ReactElement[];
   className?: string;
-  tabIndex: number;
+  tabIndex?: number;
 }
 
 interface TabsProps {
-  index: number;
+  index?: number;
   tabWidth: number;
 }
 
 const Tabs = styled.div<TabsProps>`
-  &:after {
-    width: ${(props) => props.tabWidth}px;
-    transform: translateX(${(props) => props.index * props.tabWidth}px);
-  }
+  ${(props) => {
+    if (props.index != undefined) {
+      return `
+      &:after {
+        width: ${props.tabWidth}px;
+        transform: translateX(${props.index * props.tabWidth}px);
+      }`;
+    }
+  }}
   ${tw`
     shadow-signature
     w-full 
@@ -27,10 +32,9 @@ const Tabs = styled.div<TabsProps>`
     rounded-[1.25rem]
     flex
     font-medium
-    transition
+    
     bg-white
     after:content-['']
-    after:transition
     after:rounded-[1.25rem]
     after:absolute  
     after:align-middle
@@ -43,6 +47,7 @@ export type Ref = HTMLDivElement;
 
 const TabList: FC<Props> = ({ children, className, tabIndex }) => {
   let [tabWidth, setTabWidth] = useState<number>(0);
+  let [addClass, setAddClass] = useState<string>('');
   const tabRef = useRef<Ref>(null);
   const childrenCount = React.Children.count(children);
 
@@ -69,6 +74,16 @@ const TabList: FC<Props> = ({ children, className, tabIndex }) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (tabIndex != undefined) {
+      setTimeout(() => {
+        setAddClass('transition after:transition');
+      }, 50);
+    } else {
+      setAddClass('');
+    }
+  }, [tabIndex]);
+
   const childrenAddClassname = React.Children.map(children, (item: ReactElement) => {
     const itemProps: TabProps = cloneDeep(item.props);
     itemProps.selectClass = 'text-white';
@@ -80,8 +95,9 @@ const TabList: FC<Props> = ({ children, className, tabIndex }) => {
 
     return React.cloneElement<TabProps>(item, props, itemProps.children);
   });
+
   return (
-    <Tabs ref={tabRef} className={className} index={tabIndex} tabWidth={tabWidth}>
+    <Tabs ref={tabRef} className={className + ' ' + addClass} index={tabIndex} tabWidth={tabWidth}>
       {childrenAddClassname}
     </Tabs>
   );
