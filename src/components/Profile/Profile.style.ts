@@ -6,20 +6,20 @@ interface WProps {
 }
 
 export const Container = tw.div`
-container max-w-[1200px] m-auto pt-8 pb-[88px]
+container max-w-[1200px] m-auto pt-8 pb-[88px] justify-center
 
 `;
 export const List = styled.div<WProps>`
   width: ${(props) => props.width};
 
   ${tw`
-  flex h-[180px] rounded-[30px] mr-6 last:mr-0
+  h-[180px] rounded-[30px]
   shadow-[0_4px_20px_4px_rgba(198, 198, 224, 0.8)]
   
   `};
 `;
 export const Box = tw.div`
-flex justify-center mb-10
+flex justify-center mb-10 w-[1308px] mx-auto
 `;
 export const ImgBox = tw.div`
 flex mr-[10px]
@@ -37,6 +37,9 @@ font-bold text-[40px] text-[#000060]
 `;
 export const CountText = tw.div`
 text-xs text-[#757575] mt-6
+`;
+export const ReviewBox = tw.div`
+flex w-[753px] p-5
 `;
 export const Review = tw.div`
 

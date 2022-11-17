@@ -1,4 +1,9 @@
 import { useState } from "react";
+import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+
 import {
   Box,
   Comment,
@@ -12,9 +17,12 @@ import {
   Nickname,
   Rating,
   Review,
+  ReviewBox,
 } from "./Profile.style";
+import ProgressProvider from "./ProgressProvider";
 
 export default function Profile() {
+  const [valueEnd, setValueEnd] = useState(2.7);
   const [review, setReview] = useState([
     {
       src: "https://dimg.donga.com/a/500/0/90/5/ugc/CDB/29STREET/Article/5f/10/fd/c1/5f10fdc11b4dd273825d.jpg",
@@ -35,11 +43,17 @@ export default function Profile() {
       rating: 4,
       comment: "허허 좋구만",
     },
+    {
+      src: "https://mblogthumb-phinf.pstatic.net/MjAxOTEwMjdfMzUg/MDAxNTcyMTU5MDAxMzI5.W1GIPQd0z73GxQ78Pj31C9KD3fC4aYQLNRMEX_AKp3Mg.oxeTqHTkh4-i2sG_tz3C11qzHCIYNgkVP34UkTXsU7Ug.JPEG.msjin93/IMG_8495.JPG?type=w800",
+      nickname: "늙은 핑구",
+      rating: 4,
+      comment: "허허 좋구만",
+    },
   ]);
   return (
     <Container>
       <Box>
-        <List width="310px" className="p-7">
+        <List width="310px" className="p-7 flex mr-6">
           <Img
             className="w-[120px] h-[120px] mr-5"
             src="https://mblogthumb-phinf.pstatic.net/MjAxOTEwMjdfMjk3/MDAxNTcyMTU4OTA1NjAz.zHEicJ1aBtmkKS4bRYy02y_fBcbvLrWbFTcbUeUBnvIg.knnGDJUVIz4TcrVN7ARyAtfel9_JlbYRn1t2VUFjNtIg.JPEG.msjin93/IMG_8470.JPG?type=w800"
@@ -49,7 +63,7 @@ export default function Profile() {
             생각하는 핑구
           </div>
         </List>
-        <List width="420px" className="pt-[58px] px-[42px]">
+        <List width="420px" className="flex pt-[58px] px-[42px] mr-6">
           <CountBox>
             <Count>10</Count>
             <CountText>로그인 횟수</CountText>
@@ -72,9 +86,8 @@ export default function Profile() {
           </div>
         </List>
       </Box>
-
       <Box>
-        <List width="310px" className="p-6">
+        <List width="310px" className="flex p-6 mr-6 mt-4">
           <ImgBox>
             <Img
               className="w-[90px] h-[90px]"
@@ -90,36 +103,49 @@ export default function Profile() {
             </div>
           </div>
         </List>
-        <List width="198px"></List>
-        {review.map((e: any, i: any) => (
-          <List width="309px" className="py-6 px-5" key={i}>
-            <Img className="w-12 h-12 mr-2" src={e.src} alt="pinggu" />
-            <Review>
-              <Nickname>{e.nickname}</Nickname>
-              <Rating>
-                {e.rating} {"🧊".repeat(e.rating)}
-              </Rating>
-              <Comment>{e.comment}</Comment>
-            </Review>
-          </List>
-        ))}
-      </Box>
-      <Box>
-        <List width="309px" className="py-6 px-5">
-          <Img
-            className="w-12 h-12 mr-2"
-            src="https://mblogthumb-phinf.pstatic.net/MjAxOTEwMjdfMjk3/MDAxNTcyMTU4OTA1NjAz.zHEicJ1aBtmkKS4bRYy02y_fBcbvLrWbFTcbUeUBnvIg.knnGDJUVIz4TcrVN7ARyAtfel9_JlbYRn1t2VUFjNtIg.JPEG.msjin93/IMG_8470.JPG?type=w800"
-            alt="pinggu"
-          />
-          <Review>
-            <Nickname>뱁세</Nickname>
-            <Rating>5</Rating>
-            <Comment>
-              몇 일 동안 찜해놓고 노리고 있었는데, 장 열자마자 바로 낙찰!! 싸게
-              낚아서 쥬아요~
-            </Comment>
-          </Review>
+        <List
+          width="198px"
+          className="bg-[#0000D8] justify-center p-5 mr-0 mt-4"
+        >
+          <div className="text-base text-[#fff] mb-2 ">거래평점</div>
+          <div className="w-[106px] mx-auto">
+            <ProgressProvider valueStart={0} valueEnd={valueEnd}>
+              {(value: number) => (
+                <CircularProgressbar
+                  value={value}
+                  text={`${value}`}
+                  maxValue={5}
+                  counterClockwise
+                  strokeWidth={13}
+                  styles={buildStyles({
+                    textColor: "#ffffff",
+                    pathColor: "#ffffff",
+                    trailColor: "rgba(114, 114, 224, 0.6)",
+                    textSize: 32,
+                  })}
+                />
+              )}
+            </ProgressProvider>
+          </div>
         </List>
+        <Swiper spaceBetween={50} slidesPerView={2.3} className="w-[752px]">
+          <ReviewBox>
+            {review.map((e: any, i: any) => (
+              <SwiperSlide className="py-4 pl-5 w-[309px]" key={i}>
+                <List width="309px" className="flex py-6 px-5 min-w-[309px]">
+                  <Img className="w-12 h-12 mr-2" src={e.src} alt="pinggu" />
+                  <Review>
+                    <Nickname>{e.nickname}</Nickname>
+                    <Rating>
+                      {e.rating} {"🧊".repeat(e.rating)}
+                    </Rating>
+                    <Comment>{e.comment}</Comment>
+                  </Review>
+                </List>
+              </SwiperSlide>
+            ))}
+          </ReviewBox>
+        </Swiper>
       </Box>
     </Container>
   );
