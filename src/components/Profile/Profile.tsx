@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import "swiper/css/navigation";
 
 import {
   Box,
@@ -22,7 +24,15 @@ import {
 import ProgressProvider from "./ProgressProvider";
 
 export default function Profile() {
-  const [valueEnd, setValueEnd] = useState(2.7);
+  const [valueEnd, setValueEnd] = useState(0);
+  const setRating = () => {
+    let total = 0;
+    for (let i = 0; i < review.length; i++) {
+      total += review[i].rating;
+    }
+    setValueEnd(total / review.length);
+  };
+  useEffect(setRating);
   const [review, setReview] = useState([
     {
       src: "https://dimg.donga.com/a/500/0/90/5/ugc/CDB/29STREET/Article/5f/10/fd/c1/5f10fdc11b4dd273825d.jpg",
@@ -30,6 +40,12 @@ export default function Profile() {
       rating: 2,
       comment:
         "아주 좋아요~ 아주 좋아요~ 아주 좋아요~ 아주 좋아요~ 아주 좋아요~ 아주 좋아요~ 아주 좋아요~ ",
+    },
+    {
+      src: "https://mblogthumb-phinf.pstatic.net/MjAxOTEwMjdfMzUg/MDAxNTcyMTU5MDAxMzI5.W1GIPQd0z73GxQ78Pj31C9KD3fC4aYQLNRMEX_AKp3Mg.oxeTqHTkh4-i2sG_tz3C11qzHCIYNgkVP34UkTXsU7Ug.JPEG.msjin93/IMG_8495.JPG?type=w800",
+      nickname: "늙은 핑구",
+      rating: 4,
+      comment: "허허 좋구만",
     },
     {
       src: "https://mblogthumb-phinf.pstatic.net/MjAxOTEwMjdfMzUg/MDAxNTcyMTU5MDAxMzI5.W1GIPQd0z73GxQ78Pj31C9KD3fC4aYQLNRMEX_AKp3Mg.oxeTqHTkh4-i2sG_tz3C11qzHCIYNgkVP34UkTXsU7Ug.JPEG.msjin93/IMG_8495.JPG?type=w800",
@@ -63,21 +79,17 @@ export default function Profile() {
             생각하는 핑구
           </div>
         </List>
-        <List width="420px" className="flex pt-[58px] px-[42px] mr-6">
+        <List width="309px" className="flex pt-[58px] px-[42px] mr-6">
           <CountBox>
             <Count>10</Count>
             <CountText>로그인 횟수</CountText>
           </CountBox>
           <CountBox>
             <Count>3</Count>
-            <CountText>팔기</CountText>
-          </CountBox>
-          <CountBox>
-            <Count>6</Count>
-            <CountText>비우기</CountText>
+            <CountText>팔고 비운 횟수</CountText>
           </CountBox>
         </List>
-        <List width="530px" className="px-7 py-6">
+        <List width="642px" className="px-7 py-6">
           <div className="text-base text-[#424242]">
             김파비. 나이 1세. 돈이 된다면 무엇이든 팔아제끼는 펭귄. 내용을
             입력해주세요.내용을 입력해주세요.내용을 입력해주세요.내용을
@@ -128,25 +140,34 @@ export default function Profile() {
             </ProgressProvider>
           </div>
         </List>
-        <Swiper spaceBetween={50} slidesPerView={2.3} className="w-[752px]">
-          <ReviewBox>
-            {review.map((e: any, i: any) => (
-              <SwiperSlide className="py-4 pl-5 w-[309px]" key={i}>
-                <List width="309px" className="flex py-6 px-5 min-w-[309px]">
-                  <Img className="w-12 h-12 mr-2" src={e.src} alt="pinggu" />
-                  <Review>
-                    <Nickname>{e.nickname}</Nickname>
-                    <Rating>
-                      {e.rating} {"🧊".repeat(e.rating)}
-                    </Rating>
-                    <Comment>{e.comment}</Comment>
-                  </Review>
-                </List>
-              </SwiperSlide>
-            ))}
-          </ReviewBox>
+        <Swiper
+          modules={[Navigation]}
+          slidesPerView={2.3033}
+          className="w-[777px] px-4"
+          navigation
+        >
+          {review.slice(0, 5).map((e: any, i: any) => (
+            <SwiperSlide className="py-4" key={i}>
+              <List width="309px" className="flex py-6 px-5 ml-6">
+                <Img className="w-12 h-12 mr-2" src={e.src} alt="pinggu" />
+                <Review>
+                  <Nickname>{e.nickname}</Nickname>
+                  <Rating>
+                    {e.rating} {"🧊".repeat(e.rating)}
+                  </Rating>
+                  <Comment>{e.comment}</Comment>
+                </Review>
+              </List>
+            </SwiperSlide>
+          ))}
+          <SwiperSlide className="py-4 pl-5">
+            <List width="309px" className="flex py-6 px-5">
+              리뷰 더보기
+            </List>
+          </SwiperSlide>
         </Swiper>
       </Box>
+      <button></button>
     </Container>
   );
 }

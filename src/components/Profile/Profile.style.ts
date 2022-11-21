@@ -19,7 +19,7 @@ export const List = styled.div<WProps>`
   `};
 `;
 export const Box = tw.div`
-flex justify-center mb-10 w-[1308px] mx-auto
+flex justify-center mb-10 mx-auto max-w-[1318px]
 `;
 export const ImgBox = tw.div`
 flex mr-[10px]
@@ -29,7 +29,7 @@ export const Img = tw.img`
 object-cover rounded-[50%]
 `;
 export const CountBox = tw.div`
-w-[110px] h-[62px] text-center
+w-[112.5px] h-[62px] text-center
 border-solid border-r-[1px] border-[#BDBDBD] last:border-r-0 
 `;
 export const Count = tw.div`
