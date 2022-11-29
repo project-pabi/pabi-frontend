@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { useStateMachine } from 'little-state-machine';
+import React, { useState, useCallback } from 'react';
 import updateAction from './updateAction';
 import {
   Input,
@@ -15,12 +15,19 @@ import {
 } from './Information.style';
 import { useNavigate } from 'react-router-dom';
 
+import { useAppDispatch, useAppSelector } from '@/store/config';
+import { setName } from '@/store/slices/itemInfoSlice';
+
 const Information = (props: any) => {
   const { register, handleSubmit } = useForm();
-  const { actions } = useStateMachine({ updateAction });
   let navigate = useNavigate();
+
+  const { name } = useAppSelector((state) => state.itemInfo);
+  const dispatch = useAppDispatch();
+
   const onSubmit = (data: any) => {
     console.log(data);
+    dispatch(setName(data.name));
     navigate('../category');
   };
 

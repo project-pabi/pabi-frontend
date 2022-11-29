@@ -30,7 +30,7 @@ const Information = (props: any) => {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <TabTitle className="mb-[50px]">
-          물건의 <TitleHighlight>종류</TitleHighlight>는 무엇인가요?
+          물건을 어떻게 <TitleHighlight>전달</TitleHighlight>할까요?
         </TabTitle>
 
         <ul className="flex justify-center">

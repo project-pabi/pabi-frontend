@@ -30,7 +30,7 @@ const Information = (props: any) => {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <TabTitle className="mb-[50px]">
-          물건의 <TitleHighlight>종류</TitleHighlight>는 무엇인가요?
+          경매를 <TitleHighlight>시작할 가격</TitleHighlight>을 알려주세요
         </TabTitle>
 
         <ul className="flex justify-center">
