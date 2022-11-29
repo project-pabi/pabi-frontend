@@ -53,3 +53,20 @@ text-lg text-[#0000D8]
 export const Comment = tw.div`
 text-base text-[#424242]
 `;
+export const Title = tw.div`
+text-xl
+`;
+export const TBox = tw.div`
+relative
+`;
+export const ArrowBox = tw.div`
+inline-block ml-[550px]
+`;
+export const PrevArrow = tw.button`
+w-9 h-9 bg-[#E4E4F7] rounded-[50%] right-0
+
+`;
+export const NextArrow = tw.button`
+ml-[15px]
+w-9 h-9 bg-[#7272E0] rounded-[50%]  right-0
+`;
