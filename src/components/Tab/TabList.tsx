@@ -52,7 +52,6 @@ const TabList: FC<Props> = ({ children, className, tabIndex }) => {
   const childrenCount = React.Children.count(children);
 
   const getTabButtonWidth = () => {
-    console.log(tabRef.current);
     return (tabRef.current?.offsetWidth ?? 0) / childrenCount;
   };
 
