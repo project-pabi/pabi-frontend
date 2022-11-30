@@ -8,6 +8,7 @@ interface TabProps {
   className?: string;
   attributes?: any;
   isSelect?: boolean;
+  isComplite?: boolean;
   selectClass?: string;
   unselectClass?: string;
 }
@@ -33,6 +34,7 @@ const Tab: FC<TabProps> = ({
   attributes,
   className = '',
   isSelect = false,
+  isComplite = false,
   selectClass = '',
   unselectClass = '',
 }) => {
@@ -44,7 +46,7 @@ const Tab: FC<TabProps> = ({
         }
       }}
       {...attributes}
-      className={className + (isSelect ? selectClass : unselectClass)}>
+      className={className + (isSelect ? selectClass : unselectClass) + (isComplite ? ' text-red-500' : '')}>
       {children}
     </TabButtton>
   );

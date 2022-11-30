@@ -9,6 +9,7 @@ module.exports = {
       '@router': path.join(__dirname, 'src/router/'),
       '@pages': path.join(__dirname, 'src/pages/'),
       '@store': path.join(__dirname, 'src/store/'),
+      '@plugin': path.join(__dirname, 'src/plugin/'),
     },
   },
   jest: {

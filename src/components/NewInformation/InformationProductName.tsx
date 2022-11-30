@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import React, { useState, useCallback } from 'react';
 import updateAction from './updateAction';
 import {
@@ -14,12 +15,28 @@ import {
   Title,
 } from './Information.style';
 import { useNavigate } from 'react-router-dom';
-
 import { useAppDispatch, useAppSelector } from '@/store/config';
 import { setName } from '@/store/slices/itemInfoSlice';
+import yup from '@/plugin/yup';
+
+interface FormValues {
+  name: string;
+}
+
+const schema = yup
+  .object({
+    name: yup.string().label('물건의 이름은').required().max(10),
+  })
+  .required();
 
 const Information = (props: any) => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>({
+    resolver: yupResolver(schema),
+  });
   let navigate = useNavigate();
 
   const { name } = useAppSelector((state) => state.itemInfo);
@@ -38,6 +55,7 @@ const Information = (props: any) => {
           비우려는 물건의 <TitleHighlight>이름</TitleHighlight>을 알려주세요
         </TabTitle>
         <TextBox type={'text'} placeholder="물건의 이름이 무엇인가요?" {...register('name')}></TextBox>
+        <p>{errors.name?.message}</p>
         <div className="flex justify-center mt-10">
           <NextButton type="submit">다음으로</NextButton>
         </div>

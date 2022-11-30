@@ -22,7 +22,8 @@
       "@component/*": ["./src/components/*"],
       "@router/*": ["./src/router/*"],
       "@pages/*": ["./src/pages/*"],
-      "@store/*": ["./src/store/*"]
+      "@store/*": ["./src/store/*"],
+      "@plugin/*": ["./src/plugin/*"]
     }
   },
   "include": ["src", "craco.config.js"],

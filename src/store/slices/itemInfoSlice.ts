@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, createSelector } from '@reduxjs/toolkit';
-
+import { RootState } from '@/store/config';
 interface ItemInfoState {
   name: string;
   category: any;
@@ -57,87 +57,108 @@ export const { setName, setCategory, setState, setPhoto, setExplan, setType, set
 
 export default itemInfoSlice;
 
-const isNameComplite = (state: ItemInfoState): boolean => {
-  return !!state.name;
+const isNameComplite = (state: RootState): boolean => {
+  return !!state.itemInfo.name;
 };
-const isCategoryComplite = (state: ItemInfoState): boolean => {
-  return isNameComplite(state) && !!state.category;
+const isCategoryComplite = (state: RootState): boolean => {
+  return isNameComplite(state) && !!state.itemInfo.category;
 };
-const isStateComplite = (state: ItemInfoState): boolean => {
-  return isCategoryComplite(state) && !!state.state;
+const isStateComplite = (state: RootState): boolean => {
+  return isCategoryComplite(state) && !!state.itemInfo.state;
 };
-const isPhotoComplite = (state: ItemInfoState): boolean => {
-  return isStateComplite(state) && !!state.photo;
+const isPhotoComplite = (state: RootState): boolean => {
+  return isStateComplite(state) && !!state.itemInfo.photo;
 };
-const isExplanComplite = (state: ItemInfoState): boolean => {
-  return isPhotoComplite(state) && !!state.explan;
+const isExplanComplite = (state: RootState): boolean => {
+  return isPhotoComplite(state) && !!state.itemInfo.explan;
 };
-const isTypeComplite = (state: ItemInfoState): boolean => {
-  return isExplanComplite(state) && !!state.type;
+const isTypeComplite = (state: RootState): boolean => {
+  return isExplanComplite(state) && !!state.itemInfo.type;
 };
-const isPriceComplite = (state: ItemInfoState): boolean => {
-  return isTypeComplite(state) && !!state.price;
+const isPriceComplite = (state: RootState): boolean => {
+  return isTypeComplite(state) && !!state.itemInfo.price;
 };
-const isTradeTypeComplite = (state: ItemInfoState): boolean => {
-  return isPriceComplite(state) && !!state.tradeType;
+const isTradeTypeComplite = (state: RootState): boolean => {
+  return isPriceComplite(state) && !!state.itemInfo.tradeType;
 };
 
-const isNameCompliteSelector = createSelector(
-  (state: ItemInfoState): ItemInfoState => state,
-  (state: ItemInfoState): boolean => {
-    return isNameComplite(state);
-  }
-);
-const isCategoryCompliteSelector = createSelector(
-  (state: ItemInfoState): ItemInfoState => state,
-  (state: ItemInfoState): boolean => {
-    return isCategoryComplite(state);
-  }
-);
-const isStateCompliteSelector = createSelector(
-  (state: ItemInfoState): ItemInfoState => state,
-  (state: ItemInfoState): boolean => {
-    return isStateComplite(state);
-  }
-);
-const isPhotoCompliteSelector = createSelector(
-  (state: ItemInfoState): ItemInfoState => state,
-  (state: ItemInfoState): boolean => {
-    return isPhotoComplite(state);
-  }
-);
-const isExplanCompliteSelector = createSelector(
-  (state: ItemInfoState): ItemInfoState => state,
-  (state: ItemInfoState): boolean => {
-    return isExplanComplite(state);
-  }
-);
-const isTypeCompliteSelector = createSelector(
-  (state: ItemInfoState): ItemInfoState => state,
-  (state: ItemInfoState): boolean => {
-    return isTypeComplite(state);
-  }
-);
-const isPriceCompliteSelector = createSelector(
-  (state: ItemInfoState): ItemInfoState => state,
-  (state: ItemInfoState): boolean => {
-    return isPriceComplite(state);
-  }
-);
-const isTradeTypeCompliteSelector = createSelector(
-  (state: ItemInfoState): ItemInfoState => state,
-  (state: ItemInfoState): boolean => {
-    return isTradeTypeComplite(state);
-  }
+const isCompliteSelector = createSelector(
+  isNameComplite,
+  isCategoryComplite,
+  isStateComplite,
+  isPhotoComplite,
+  isExplanComplite,
+  isTypeComplite,
+  isPriceComplite,
+  isTradeTypeComplite,
+  (
+    isNameComplite,
+    isCategoryComplite,
+    isStateComplite,
+    isPhotoComplite,
+    isExplanComplite,
+    isTypeComplite,
+    isPriceComplite,
+    isTradeTypeComplite
+  ) => ({
+    isNameComplite,
+    isCategoryComplite,
+    isStateComplite,
+    isPhotoComplite,
+    isExplanComplite,
+    isTypeComplite,
+    isPriceComplite,
+    isTradeTypeComplite,
+  })
 );
 
-export {
-  isNameCompliteSelector,
-  isCategoryCompliteSelector,
-  isStateCompliteSelector,
-  isPhotoCompliteSelector,
-  isExplanCompliteSelector,
-  isTypeCompliteSelector,
-  isPriceCompliteSelector,
-  isTradeTypeCompliteSelector,
-};
+// const isNameCompliteSelector = createSelector(
+//   (state: ItemInfoState): ItemInfoState => state,
+//   (state: ItemInfoState): boolean => {
+//     return isNameComplite(state);
+//   }
+// );
+// const isCategoryCompliteSelector = createSelector(
+//   (state: ItemInfoState): ItemInfoState => state,
+//   (state: ItemInfoState): boolean => {
+//     return isCategoryComplite(state);
+//   }
+// );
+// const isStateCompliteSelector = createSelector(
+//   (state: ItemInfoState): ItemInfoState => state,
+//   (state: ItemInfoState): boolean => {
+//     return isStateComplite(state);
+//   }
+// );
+// const isPhotoCompliteSelector = createSelector(
+//   (state: ItemInfoState): ItemInfoState => state,
+//   (state: ItemInfoState): boolean => {
+//     return isPhotoComplite(state);
+//   }
+// );
+// const isExplanCompliteSelector = createSelector(
+//   (state: ItemInfoState): ItemInfoState => state,
+//   (state: ItemInfoState): boolean => {
+//     return isExplanComplite(state);
+//   }
+// );
+// const isTypeCompliteSelector = createSelector(
+//   (state: ItemInfoState): ItemInfoState => state,
+//   (state: ItemInfoState): boolean => {
+//     return isTypeComplite(state);
+//   }
+// );
+// const isPriceCompliteSelector = createSelector(
+//   (state: ItemInfoState): ItemInfoState => state,
+//   (state: ItemInfoState): boolean => {
+//     return isPriceComplite(state);
+//   }
+// );
+// const isTradeTypeCompliteSelector = createSelector(
+//   (state: ItemInfoState): ItemInfoState => state,
+//   (state: ItemInfoState): boolean => {
+//     return isTradeTypeComplite(state);
+//   }
+// );
+
+export { isCompliteSelector };
