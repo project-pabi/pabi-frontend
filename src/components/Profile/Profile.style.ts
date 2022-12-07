@@ -6,7 +6,7 @@ interface WProps {
 }
 
 export const Container = tw.div`
-container max-w-[1200px] m-auto pt-8 pb-[88px] justify-center
+container w-[1313px] m-auto pt-8 pb-[88px] justify-center
 
 `;
 export const List = styled.div<WProps>`
@@ -19,7 +19,7 @@ export const List = styled.div<WProps>`
   `};
 `;
 export const Box = tw.div`
-flex justify-center mb-10 mx-auto max-w-[1318px]
+flex justify-center mb-10 mx-0 max-w-[1313px]
 `;
 export const ImgBox = tw.div`
 flex mr-[10px]
@@ -69,4 +69,9 @@ w-9 h-9 bg-[#E4E4F7] rounded-[50%] right-0
 export const NextArrow = tw.button`
 ml-[15px]
 w-9 h-9 bg-[#7272E0] rounded-[50%]  right-0
+`;
+export const MoreReview = tw.div`
+flex cursor-pointer h-[80px] rounded-[30px]
+shadow-[0_4px_20px_4px_rgba(198, 198, 224, 0.8)]
+justify-center items-center
 `;

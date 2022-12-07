@@ -15,6 +15,7 @@ import {
   Img,
   ImgBox,
   List,
+  MoreReview,
   NextArrow,
   Nickname,
   PrevArrow,
@@ -25,6 +26,7 @@ import {
 } from "./Profile.style";
 import ProgressProvider from "./ProgressProvider";
 import Slider from "react-slick";
+import More from "./more.png";
 
 export default function Profile() {
   const sliderRef = useRef<any>(null);
@@ -80,8 +82,11 @@ export default function Profile() {
 
   return (
     <Container>
+      <div className="font-bold text-[40px] leading-[60px] mb-[120px] pl-10">
+        생각하는 핑구님의 프로필
+      </div>
       <Box>
-        <List width="310px" className="p-7 flex mr-6">
+        <List width="309px" className="p-7 flex mr-6">
           <Img
             className="w-[120px] h-[120px] mr-5"
             src="https://mblogthumb-phinf.pstatic.net/MjAxOTEwMjdfMjk3/MDAxNTcyMTU4OTA1NjAz.zHEicJ1aBtmkKS4bRYy02y_fBcbvLrWbFTcbUeUBnvIg.knnGDJUVIz4TcrVN7ARyAtfel9_JlbYRn1t2VUFjNtIg.JPEG.msjin93/IMG_8470.JPG?type=w800"
@@ -110,7 +115,7 @@ export default function Profile() {
       <Box>
         <TBox>
           <Title>획득한 뱃지</Title>
-          <List width="310px" className="flex p-6 mr-6 mt-4">
+          <List width="309px" className="flex p-6 mr-6 mt-4">
             <ImgBox>
               <Img
                 className="w-[90px] h-[90px]"
@@ -185,6 +190,11 @@ export default function Profile() {
           </Slider>
         </TBox>
       </Box>
+      <MoreReview>
+        <img src={More} alt="more" className="w-[52px] h-[52px]"></img>
+        <p className="mx-6 text-xl">판매 내역 보기</p>
+        <p>팔고 비운 내역을 확인해보세요</p>
+      </MoreReview>
     </Container>
   );
 }
