@@ -9,9 +9,6 @@ import {
   Box,
   Comment,
   Container,
-  Count,
-  CountBox,
-  CountText,
   Img,
   ImgBox,
   List,
@@ -33,9 +30,10 @@ export default function Profile() {
   console.log(sliderRef.current);
   const settings = {
     infinite: false,
-    slidesToShow: 2.3,
+    rows: 1,
+    slidesToShow: 3,
     slidesToScroll: 1,
-    arrows: false,
+    arrows: true,
   };
   const [valueEnd, setValueEnd] = useState(0);
   const setRating = () => {
@@ -72,12 +70,6 @@ export default function Profile() {
       rating: 4,
       comment: "허허 좋구만",
     },
-    {
-      src: "https://mblogthumb-phinf.pstatic.net/MjAxOTEwMjdfMzUg/MDAxNTcyMTU5MDAxMzI5.W1GIPQd0z73GxQ78Pj31C9KD3fC4aYQLNRMEX_AKp3Mg.oxeTqHTkh4-i2sG_tz3C11qzHCIYNgkVP34UkTXsU7Ug.JPEG.msjin93/IMG_8495.JPG?type=w800",
-      nickname: "늙은 핑구",
-      rating: 4,
-      comment: "허허 좋구만",
-    },
   ]);
 
   return (
@@ -85,8 +77,8 @@ export default function Profile() {
       <div className="font-bold text-[40px] leading-[60px] mb-[120px] pl-10">
         생각하는 핑구님의 프로필
       </div>
-      <Box>
-        <List width="309px" className="p-7 flex mr-6">
+      <Box className="mb-5">
+        <List className="col-span-4 p-7 flex">
           <Img
             className="w-[120px] h-[120px] mr-5"
             src="https://mblogthumb-phinf.pstatic.net/MjAxOTEwMjdfMjk3/MDAxNTcyMTU4OTA1NjAz.zHEicJ1aBtmkKS4bRYy02y_fBcbvLrWbFTcbUeUBnvIg.knnGDJUVIz4TcrVN7ARyAtfel9_JlbYRn1t2VUFjNtIg.JPEG.msjin93/IMG_8470.JPG?type=w800"
@@ -96,46 +88,37 @@ export default function Profile() {
             생각하는 핑구
           </div>
         </List>
-        <List width="309px" className="flex pt-[58px] px-[42px] mr-6">
-          <CountBox>
-            <Count>10</Count>
-            <CountText>로그인 횟수</CountText>
-          </CountBox>
-          <CountBox>
-            <Count>3</Count>
-            <CountText>팔고 비운 횟수</CountText>
-          </CountBox>
+
+        <List className="col-span-4 py-4 px-8">
+          <div className="flex justify-between items-center mb-2">
+            <div className="text-xl">획득한 배지</div>
+            <div className="text-xs">전체보기</div>
+          </div>
+          <div className="flex justify-between items-center">
+            <ImgBox>
+              <Img
+                className="w-[90px] h-[90px] mr-8"
+                src="https://www.pngmart.com/files/12/Instagram-Verified-Badge-PNG-Transparent-Image.png"
+                alt="badge"
+              />
+              <div className="">
+                <div className="font-bold text-base">관리자인증</div>
+                <div className="text-sm">
+                  와! 관리자인증! 와! 관리자인증! 와! 관리자인증! 와!
+                  관리자인증! 와! 관리자인증! 와! 관리자인증!
+                </div>
+              </div>
+            </ImgBox>
+          </div>
         </List>
-        <List width="642px" className="px-7 py-6">
+        <List className="col-span-4 px-7 py-6">
           <div className="text-base text-[#424242]">
             김파비. 나이 1세. 돈이 된다면 무엇이든 팔아제끼는 펭귄.
           </div>
         </List>
       </Box>
       <Box>
-        <TBox>
-          <Title>획득한 뱃지</Title>
-          <List width="309px" className="flex p-6 mr-6 mt-4">
-            <ImgBox>
-              <Img
-                className="w-[90px] h-[90px]"
-                src="https://www.pngmart.com/files/12/Instagram-Verified-Badge-PNG-Transparent-Image.png"
-                alt="badge"
-              />
-            </ImgBox>
-            <div className="w-[157px]">
-              <div className="text-base">관리자 인증</div>
-              <div className="text-sm mt-[14px]">
-                와! 관리자인증! 와! 관리자인증! 와! 관리자인증! 와! 관리자인증!
-                와! 관리자인증! 와! 관리자인증!
-              </div>
-            </div>
-          </List>
-        </TBox>
-        <List
-          width="198px"
-          className="bg-[#0000D8] justify-center p-5 mr-0 mt-11 z-20"
-        >
+        <List className="bg-[#0000D8] justify-center p-5 mt-11 col-span-3">
           <div className="text-base text-[#fff] mb-2 ">거래평점</div>
           <div className="w-[106px] mx-auto">
             <ProgressProvider valueStart={0} valueEnd={valueEnd}>
@@ -157,7 +140,7 @@ export default function Profile() {
             </ProgressProvider>
           </div>
         </List>
-        <TBox>
+        <TBox className="col-span-9">
           <Title className="pl-6 inline z-0">받은 거래 후기</Title>
           <ArrowBox>
             <PrevArrow onClick={() => sliderRef.current.slickPrev()}>
@@ -167,12 +150,14 @@ export default function Profile() {
               ▶
             </NextArrow>
           </ArrowBox>
-          <div className="absolute bg-white w-5 h-full left-[-5px] z-10 blur-sm"></div>
-          <div className="absolute bg-white w-5 h-full right-[-4px] z-10 blur-sm"></div>
-          <Slider ref={sliderRef} {...settings} className="w-[777px] ">
+          <Slider
+            ref={sliderRef}
+            {...settings}
+            className="grid grid-cols-9 gap-6"
+          >
             {review.slice(0, 5).map((e: any, i: any) => (
               <div key={i}>
-                <List width="309px" className="flex py-6 px-5" key={i}>
+                <List className="py-6 px-5 flex col-span-3 mr-6" key={i}>
                   <Img className="w-12 h-12 mr-2" src={e.src} alt="pinggu" />
                   <Review>
                     <Nickname>{e.nickname}</Nickname>
@@ -185,7 +170,7 @@ export default function Profile() {
               </div>
             ))}
             <div>
-              <List width="280px">리뷰더보기</List>
+              <List>리뷰 더보기</List>
             </div>
           </Slider>
         </TBox>
