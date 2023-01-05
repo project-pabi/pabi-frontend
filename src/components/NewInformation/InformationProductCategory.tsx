@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useStateMachine } from 'little-state-machine';
+import { yupResolver } from '@hookform/resolvers/yup';
 import updateAction from './updateAction';
 import {
   Input,
@@ -15,13 +16,38 @@ import {
 } from './Information.style';
 import { useNavigate } from 'react-router-dom';
 import { Category, categorys } from './Category.type';
+import { useAppDispatch, useAppSelector } from '@/store/config';
+import { setCategory } from '@/store/slices/itemInfoSlice';
+import yup from '@/plugin/yup';
+
+interface FormValues {
+  category: string;
+}
+
+const schema = yup
+  .object({
+    category: yup.string().label('물건의 종류 ').required(),
+  })
+  .required();
 
 const Information = (props: any) => {
-  const { register, handleSubmit } = useForm();
-  const { actions } = useStateMachine({ updateAction });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+  } = useForm<FormValues>({
+    resolver: yupResolver(schema),
+  });
   let navigate = useNavigate();
+
+  const { category } = useAppSelector((state) => state.itemInfo);
+  setValue('category', category);
+  const dispatch = useAppDispatch();
+
   const onSubmit = (data: any) => {
     console.log(data);
+    dispatch(setCategory(data.category));
     navigate('../state');
   };
 
@@ -34,11 +60,12 @@ const Information = (props: any) => {
         <ul className="flex justify-center">
           {categorys.map((key) => (
             <li key={key} className="mr-[20px] last:mr-0">
-              <Input type={'checkbox'} id={key} value={key} {...register('category')} />
+              <Input type={'radio'} id={key} value={key} {...register('category')} />
               <Label htmlFor={key}>{Category[key]}</Label>
             </li>
           ))}
         </ul>
+        <p>{errors.category?.message}</p>
         <div className="flex justify-center mt-10">
           <PrevButton onClick={() => navigate('../name')}>이전으로</PrevButton>
           <NextButton type="submit">다음으로</NextButton>

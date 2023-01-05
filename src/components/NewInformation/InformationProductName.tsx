@@ -18,6 +18,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/store/config';
 import { setName } from '@/store/slices/itemInfoSlice';
 import yup from '@/plugin/yup';
+import {useItemInfoStore} from "@stores/itemInfoStore";
 
 interface FormValues {
   name: string;
@@ -34,12 +35,18 @@ const Information = (props: any) => {
     register,
     handleSubmit,
     formState: { errors },
+    setValue
   } = useForm<FormValues>({
     resolver: yupResolver(schema),
   });
   let navigate = useNavigate();
 
-  const { name } = useAppSelector((state) => state.itemInfo);
+ const {name,setName} = useItemInfoStore((state) => state);
+
+
+//const { name } = useAppSelector((state) => state.itemInfo);
+  setValue('name', name);
+  
   const dispatch = useAppDispatch();
 
   const onSubmit = (data: any) => {
