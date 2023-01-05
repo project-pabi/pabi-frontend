@@ -1,25 +1,10 @@
 import { useForm } from 'react-hook-form';
-import { useStateMachine } from 'little-state-machine';
-import updateAction from './updateAction';
-import {
-  Input,
-  Label,
-  NextButton,
-  PrevButton,
-  StyledTab,
-  SubTitle,
-  TabTitle,
-  TextBox,
-  TitleHighlight,
-  Title,
-} from './Information.style';
-import { Status } from './Status.type';
 import { useNavigate } from 'react-router-dom';
-import { Category } from './Category.type';
-import { useAppDispatch, useAppSelector } from '@/store/config';
-import { setState } from '@/store/slices/itemInfoSlice';
-import yup from '@/plugin/yup';
+import { useItemInfoStore } from '@stores/itemInfoStore';
 import { yupResolver } from '@hookform/resolvers/yup';
+import yup from '@/plugin/yup';
+import { Status } from './Status.type';
+import { Input, Label, PrevButton, NextButton, TabTitle, TitleHighlight } from './Information.style';
 
 interface FormValues {
   state: string[];
@@ -32,48 +17,41 @@ const schema = yup
   .required();
 
 const Information = (props: any) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-  } = useForm<FormValues>({ resolver: yupResolver(schema) });
-  const { actions } = useStateMachine({ updateAction });
-  let navigate = useNavigate();
+  const { state, setState } = useItemInfoStore((state) => state);
 
-  const { state } = useAppSelector((state) => state.itemInfo);
-  setValue('state', state);
+  const form = useForm<FormValues>({ resolver: yupResolver(schema) });
+  const { register, handleSubmit, formState, setValue } = form;
 
-  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const onSubmit = (data: any) => {
     console.log(data);
-    dispatch(setState(data.state));
+    setState(data.state);
     navigate('../photo');
   };
 
-  return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <TabTitle className="mb-[50px]">
-          물건의 <TitleHighlight>상태</TitleHighlight>는 어떤가요?
-        </TabTitle>
+  setValue('state', state);
 
-        <ul className="flex justify-center">
-          {Status.map((status) => (
-            <li key={status} className="mr-[20px] last:mr-0">
-              <Input type={'checkbox'} id={status} value={status} {...register('state')} />
-              <Label htmlFor={status}>{status}</Label>
-            </li>
-          ))}
-        </ul>
-        <p>{errors.state?.message}</p>
-        <div className="flex justify-center mt-10">
-          <PrevButton onClick={() => navigate('../category')}>이전으로</PrevButton>
-          <NextButton type="submit">다음으로</NextButton>
-        </div>
-      </form>
-    </>
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <TabTitle className="mb-[50px]">
+        물건의 <TitleHighlight>상태</TitleHighlight>는 어떤가요?
+      </TabTitle>
+
+      <ul className="flex justify-center">
+        {Status.map((status) => (
+          <li key={status} className="mr-[20px] last:mr-0">
+            <Input type={'checkbox'} id={status} value={status} {...register('state')} />
+            <Label htmlFor={status}>{status}</Label>
+          </li>
+        ))}
+      </ul>
+      <p>{formState.errors.state?.message}</p>
+      <div className="flex justify-center mt-10">
+        <PrevButton onClick={() => navigate('../category')}>이전으로</PrevButton>
+        <NextButton type="submit">다음으로</NextButton>
+      </div>
+    </form>
   );
 };
 export default Information;

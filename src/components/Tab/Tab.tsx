@@ -1,6 +1,7 @@
 import React, { FC, ReactNode, forwardRef } from 'react';
 import tw from 'twin.macro';
 import styled from 'styled-components';
+import CheckIcon from '@mui/icons-material/Check';
 
 interface TabProps {
   children: ReactNode;
@@ -11,6 +12,7 @@ interface TabProps {
   isComplite?: boolean;
   selectClass?: string;
   unselectClass?: string;
+  tabWidth?: number;
 }
 
 interface TabButtonProps {
@@ -37,6 +39,7 @@ const Tab: FC<TabProps> = ({
   isComplite = false,
   selectClass = '',
   unselectClass = '',
+  tabWidth = 0,
 }) => {
   return (
     <TabButtton
@@ -46,8 +49,10 @@ const Tab: FC<TabProps> = ({
         }
       }}
       {...attributes}
-      className={className + (isSelect ? selectClass : unselectClass) + (isComplite ? ' text-red-500' : '')}>
+      style={{ width: `${tabWidth}px` }}
+      className={'pl-1 text-base ' + className + (isSelect ? selectClass : unselectClass)}>
       {children}
+      {isComplite && <CheckIcon className="ml-1 pr-[-0.25rem]" />}
     </TabButtton>
   );
 };

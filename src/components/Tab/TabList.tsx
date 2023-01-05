@@ -2,7 +2,7 @@ import React, { FC, ReactElement, useState, useEffect, forwardRef, useRef } from
 import type { TabProps } from '@component/Tab';
 import tw from 'twin.macro';
 import styled from 'styled-components';
-import { cloneDeep, debounce } from 'lodash';
+import { cloneDeep } from 'lodash';
 
 interface Props {
   children: ReactElement[];
@@ -55,14 +55,10 @@ const TabList: FC<Props> = ({ children, className, tabIndex }) => {
     return (tabRef.current?.offsetWidth ?? 0) / childrenCount;
   };
 
-  const resizeHandler = debounce(
-    () => {
-      const width = getTabButtonWidth();
-      setTabWidth(width);
-    },
-    100,
-    { leading: false, trailing: true }
-  );
+  const resizeHandler = () => {
+    const width = getTabButtonWidth();
+    setTabWidth(width);
+  };
 
   useEffect(() => {
     window.addEventListener('resize', resizeHandler);
@@ -87,7 +83,8 @@ const TabList: FC<Props> = ({ children, className, tabIndex }) => {
     const itemProps: TabProps = cloneDeep(item.props);
     itemProps.selectClass = 'text-white';
     itemProps.unselectClass = 'text-gray-700';
-    const className = `flex-grow justify-center items-center transition duration-500 ${
+    itemProps.tabWidth = tabWidth;
+    const className = `flex-initial justify-center items-center transition duration-500 ${
       itemProps.className ? itemProps.className : ''
     }`;
     let props: any = { ...itemProps, className: className };

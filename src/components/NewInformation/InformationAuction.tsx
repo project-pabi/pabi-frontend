@@ -1,13 +1,10 @@
-import { FC, ReactElement, Fragment, useState } from 'react';
-import { TabContext, TabPanel } from '@mui/lab';
-import { Input, Label, NextButton, PrevButton, StyledTab, SubTitle, TabTitle, TextBox, Title } from './Information.style';
-import { Box } from '@mui/material';
+import { Fragment } from 'react';
+import { SubTitle, Title } from './Information.style';
 import { TabList, Tab } from '@component/Tab';
 import { Outlet } from 'react-router-dom';
-import { stringify } from 'querystring';
 import tw from 'twin.macro';
-import styled from 'styled-components';
-import { useMatch } from 'react-router-dom';
+import { useMatch, useNavigate } from 'react-router-dom';
+import { useItemInfoStore } from '@stores/itemInfoStore';
 
 const Panel = tw.div`
   shadow-signature
@@ -20,7 +17,6 @@ const Information = () => {
   const tab1Match = useMatch('/write/auction/type') != null;
   const tab2Match = useMatch('/write/auction/price') != null;
   const tab3Match = useMatch('/write/auction/trade-type') != null;
-  let [tabIndex, setTabIndex] = useState<number>(0);
 
   const getTabIndex = () => {
     if (tab1Match) return 0;
@@ -29,15 +25,48 @@ const Information = () => {
     return 0;
   };
 
+  const navigate = useNavigate();
+  const { isExplanComplite, isTypeComplite, isPriceComplite, isTradeTypeComplite } = useItemInfoStore((state) => state);
+
+  const moveTypeTab = () => {
+    if (!isExplanComplite()) {
+      alert('제품 설명을 먼저 입력해 주세요');
+      return;
+    }
+    navigate('./type');
+  };
+
+  const movePriceTab = () => {
+    if (!isTypeComplite()) {
+      alert('경매 방식을 먼저 입력해 주세요');
+      return;
+    }
+    navigate('./price');
+  };
+
+  const moveTradeTypeTab = () => {
+    if (!isPriceComplite()) {
+      alert('시작 가격을 먼저 입력해 주세요');
+      return;
+    }
+    navigate('./trade-type');
+  };
+
   return (
     <Fragment>
       <Title>상품정보 입력</Title>
       <SubTitle>비우고 싶은 제품이 무엇인지 설명해주세요!</SubTitle>
 
       <TabList className="mb-10" tabIndex={getTabIndex()}>
-        <Tab isSelect={tab1Match}>경매 방식 선택</Tab>
-        <Tab isSelect={tab2Match}>시작 가격 입력</Tab>
-        <Tab isSelect={tab3Match}>거래 방식 선택</Tab>
+        <Tab isSelect={tab1Match} isComplite={isTypeComplite()} onClick={moveTypeTab}>
+          경매 방식 선택
+        </Tab>
+        <Tab isSelect={tab2Match} isComplite={isPriceComplite()} onClick={movePriceTab}>
+          시작 가격 입력
+        </Tab>
+        <Tab isSelect={tab3Match} isComplite={isTradeTypeComplite()} onClick={moveTradeTypeTab}>
+          거래 방식 선택
+        </Tab>
       </TabList>
       <Panel>
         <Outlet />

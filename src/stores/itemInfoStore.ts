@@ -1,4 +1,5 @@
-import create from 'zustand'
+import create from 'zustand';
+import { persist } from 'zustand/middleware';
 
 interface ItemInfoState {
   name: string;
@@ -10,40 +11,23 @@ interface ItemInfoState {
   price: number;
   tradeType: any;
 
+  setName: (name: string) => void;
+  setCategory: (category: any) => void;
+  setState: (state: any) => void;
+  setPhoto: (photo: any) => void;
+  setExplan: (explan: any) => void;
+  setType: (type: any) => void;
+  setPrice: (price: number) => void;
+  setTradeType: (tradeType: any) => void;
 
-  setName: (name: string): void => {
-  set({name});
-},
-setCategory: (category: any): void => {
-  set({category});
-},
-    setState: (state: any): void => {
-  set({state});
-},
-    setPhoto: (photo: any): void => {
-  set({photo})
-},
-    setExplan: (explan: any): void => {
-  set({explan})
-},
-    setType: (type: any): void => {
-  set({type})
-},
-    setPrice: (price: number): void => {
-  set({price})
-},
-    setTradeType: (tradeType: any): void => {
-  set({tradeType})
-}
-
-  isNameComplite: () => boolean,
-  isCategoryComplite: () => boolean,
-  isStateComplite: () => boolean,
-  isPhotoComplite: () => boolean,
-  isExplanComplite: () => boolean,
-  isTypeComplite: () => boolean,
-  isPriceComplite: () => boolean,
-  isTradeTypeComplite: () => boolean,
+  isNameComplite: () => boolean;
+  isCategoryComplite: () => boolean;
+  isStateComplite: () => boolean;
+  isPhotoComplite: () => boolean;
+  isExplanComplite: () => boolean;
+  isTypeComplite: () => boolean;
+  isPriceComplite: () => boolean;
+  isTradeTypeComplite: () => boolean;
 }
 
 const state = {
@@ -55,36 +39,36 @@ const state = {
   type: '',
   price: 10,
   tradeType: '',
-}
+};
 
-const action = (set) => ({
+const action = (set: any) => ({
   setName: (name: string): void => {
-    set({name});
+    set({ name });
   },
   setCategory: (category: any): void => {
-    set({category});
+    set({ category });
   },
   setState: (state: any): void => {
-    set({state});
+    set({ state });
   },
   setPhoto: (photo: any): void => {
-    set({photo})
+    set({ photo });
   },
   setExplan: (explan: any): void => {
-    set({explan})
+    set({ explan });
   },
   setType: (type: any): void => {
-    set({type})
+    set({ type });
   },
   setPrice: (price: number): void => {
-    set({price})
+    set({ price });
   },
   setTradeType: (tradeType: any): void => {
-    set({tradeType})
-  }
+    set({ tradeType });
+  },
 });
 
-const getter = (get) => ({
+const getter = (get: any) => ({
   isNameComplite: (): boolean => {
     return !!get().name;
   },
@@ -109,10 +93,15 @@ const getter = (get) => ({
   isTradeTypeComplite: (): boolean => {
     return get().isPriceComplite() && !!get().tradeType;
   },
-})
+});
 
-export const useItemInfoStore = create<ItemInfoState>()((set, get, _state) => ({
-  ...state,
-  ...action(set),
-  ...getter(get),
-}))
+export const useItemInfoStore = create<ItemInfoState>()(
+  persist(
+    (set, get, _state) => ({
+      ...state,
+      ...action(set),
+      ...getter(get),
+    }),
+    { name: 'ItemInfoStore' }
+  )
+);
