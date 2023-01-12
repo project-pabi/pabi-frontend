@@ -71,21 +71,22 @@ export const Label = styled.label`
   ${tw`
     inline-block
     cursor-pointer
-    bg-[#eee]
-    rounded-[20px]
+    bg-gray-200
+    rounded-5
     border-2
-    border-white
-    text-[16px] 
-    text-[#424242]
+    border-solid
+    border-gray-200
+    text-base
+    text-gray-800
     h-11
-    px-2.5
-    py-4
-    leading-[20px]
+    px-4
+    py-2.5
+    leading-tight
   `}
 `;
 export const Input = styled.input`
   display: none;
   &:checked + ${Label} {
-    ${tw`bg-white text-[#0000d8] border-2 border-[#0000d8] leading-[20px]`}
+    ${tw`bg-white text-primary border-primary`}
   }
 `;

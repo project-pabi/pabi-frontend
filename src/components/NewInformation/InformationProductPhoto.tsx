@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import yup from '@/plugin/yup';
 import { Status } from './Status.type';
 import { Input, Label, PrevButton, NextButton, TabTitle, TitleHighlight } from './Information.style';
+import Upload from "@component/NewInformation/Upload";
 
 interface FormValues {
   photo: string;
@@ -38,14 +39,7 @@ const Information = (props: any) => {
         비우려는 물건의 <TitleHighlight>모습</TitleHighlight>을 보여주세요
       </TabTitle>
 
-      <ul className="flex justify-center">
-        {Status.map((status) => (
-          <li key={status} className="mr-[20px] last:mr-0">
-            <Input type={'checkbox'} id={status} value={status} {...register('photo')} />
-            <Label htmlFor={status}>{status}</Label>
-          </li>
-        ))}
-      </ul>
+      <Upload></Upload>
       <p>{formState.errors.photo?.message}</p>
       <div className="flex justify-center mt-10">
         <PrevButton onClick={() => navigate('../state')}>이전으로</PrevButton>

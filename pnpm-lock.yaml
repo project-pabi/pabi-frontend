@@ -5,7 +5,6 @@ specifiers:
   '@emotion/react': ^11.10.4
   '@emotion/styled': ^11.10.4
   '@hookform/resolvers': ^2.9.10
-  '@material-ui/icons': ^4.11.3
   '@mui/icons-material': ^5.11.0
   '@mui/lab': 5.0.0-alpha.101
   '@mui/material': ^5.10.7
@@ -46,7 +45,6 @@ dependencies:
   '@emotion/react': 11.10.5_kzbn2opkn2327fwg5yzwzya5o4
   '@emotion/styled': 11.10.5_qvatmowesywn4ye42qoh247szu
   '@hookform/resolvers': 2.9.10_react-hook-form@7.40.0
-  '@material-ui/icons': 4.11.3_ib3m5ricvtkl2cll7qpr2f6lvq
   '@mui/icons-material': 5.11.0_x5g5t372wpbxfzkqxtxktxetsq
   '@mui/lab': 5.0.0-alpha.101_leaybv7buhqcdmkx2ya2azdov4
   '@mui/material': 5.10.17_lskpmcsdi7ipu6qpuapyu56ihm
@@ -2167,24 +2165,6 @@ packages:
 
   /@leichtgewicht/ip-codec/2.0.4:
     resolution: {integrity: sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==}
-    dev: false
-
-  /@material-ui/icons/4.11.3_ib3m5ricvtkl2cll7qpr2f6lvq:
-    resolution: {integrity: sha512-IKHlyx6LDh8n19vzwH5RtHIOHl9Tu90aAAxcbWME6kp4dmvODM3UvOHJeMIDzUbd4muuJKHmlNoBN+mDY4XkBA==}
-    engines: {node: '>=8.0.0'}
-    peerDependencies:
-      '@material-ui/core': ^4.0.0
-      '@types/react': ^16.8.6 || ^17.0.0
-      react: ^16.8.0 || ^17.0.0
-      react-dom: ^16.8.0 || ^17.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.20.6
-      '@types/react': 18.0.26
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /@mui/base/5.0.0-alpha.109_ib3m5ricvtkl2cll7qpr2f6lvq:
