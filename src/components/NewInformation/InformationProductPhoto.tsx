@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useItemInfoStore } from '@stores/itemInfoStore';
 import { yupResolver } from '@hookform/resolvers/yup';
 import yup from '@/plugin/yup';
-import { Status } from './Status.type';
-import { Input, Label, PrevButton, NextButton, TabTitle, TitleHighlight } from './Information.style';
+import { PrevButton, NextButton, TabTitle, TitleHighlight } from './Information.style';
 import Upload from "@component/NewInformation/Upload";
 
 interface FormValues {

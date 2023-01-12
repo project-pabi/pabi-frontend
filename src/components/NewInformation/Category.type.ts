@@ -15,7 +15,7 @@ export const categorys = [
   'Plant',
   'Etc',
 ] as const;
-type Categorys = typeof categorys[number];
+//type Categorys = typeof categorys[number];
 
 export const Category = {
   WomensClothingAndGoods: '여성의류/잡화',

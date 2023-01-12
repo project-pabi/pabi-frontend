@@ -8,11 +8,13 @@ export const Title = tw.div`
   mb-[12px]
   leading-[59px]
 `;
+
 export const SubTitle = tw.div`
   text-[16px]
   text-[#424242]
   mb-[34px]
 `;
+
 export const TabTitle = tw.div`
   text-[24px]
   font-bold

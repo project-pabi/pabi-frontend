@@ -1,4 +1,4 @@
-export const StatusType = {
+export const statusType = {
   ItsNew: '새거에요',
   Clean: '깨끗해요',
   NoScratches: '흠집 없어요',
@@ -6,6 +6,6 @@ export const StatusType = {
   IHaveBoxAndWarranty: '박스•보증서 있어요',
 } as const;
 
-type StatusType = typeof StatusType[keyof typeof StatusType];
+type StatusType = typeof statusType[keyof typeof statusType];
 
 export const Status: Array<StatusType> = ['새거에요', '깨끗해요', '흠집 없어요', '영수증 있어요', '박스•보증서 있어요'];

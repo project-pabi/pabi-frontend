@@ -8,12 +8,12 @@ const mixed = {
   oneOf: ({ path, label, values }: AnyMessageParams) => `${label || path}항목은 다음 값 중 하나여야 합니다.: ${values}`,
   notOneOf: ({ path, label, values }: AnyMessageParams) => `${label || path}항목은 다음 값 중 하나가 아니어야 합니다.: ${values}`,
   notType: function notType({ path, label, type, value, originalValue }: AnyMessageParams) {
-    let isCast = originalValue != null && originalValue !== value;
+    // let isCast = originalValue != null && originalValue !== value;
 
-    if (type == `number`) {
+    if (type === `number`) {
       return `${label || path} 항목은 숫자만 입력해주세요.`;
     }
-    if (type == `date`) {
+    if (type === `date`) {
       return `${label || path} 항목은 날짜 형식으로 입력해주세요.`;
     }
     return `${label || path} 항목은 ${type} 형식으로 입력해주세요.`;

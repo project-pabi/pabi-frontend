@@ -1,3 +1,4 @@
+/* eslint-disable no-fallthrough*/
 import { useEffect } from 'react';
 
 import { useMatch, useNavigate, Outlet } from 'react-router-dom';
