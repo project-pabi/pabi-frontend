@@ -1,7 +1,7 @@
 import tw from "twin.macro";
 
 export const Container = tw.div`
-container w-[1313px] m-auto pt-8 pb-[88px] justify-center
+container w-[1344px] m-auto pt-8 pb-[88px] justify-center
 
 `;
 export const List = tw.div`

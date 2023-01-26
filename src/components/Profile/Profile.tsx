@@ -24,6 +24,7 @@ import {
 import ProgressProvider from "./ProgressProvider";
 import Slider from "react-slick";
 import More from "./more.png";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 
 export default function Profile() {
   const sliderRef = useRef<any>(null);
@@ -75,24 +76,41 @@ export default function Profile() {
   return (
     <Container>
       <div className="font-bold text-[40px] leading-[60px] mb-[120px] pl-10">
-        생각하는 핑구님의 프로필
+        <span className="text-primary">생각하는 핑구</span>님의 프로필
       </div>
       <Box className="mb-5">
         <List className="col-span-4 p-7 flex">
           <Img
-            className="w-[120px] h-[120px] mr-5"
+            className="w-[124px] h-[124px] mr-5"
             src="https://mblogthumb-phinf.pstatic.net/MjAxOTEwMjdfMjk3/MDAxNTcyMTU4OTA1NjAz.zHEicJ1aBtmkKS4bRYy02y_fBcbvLrWbFTcbUeUBnvIg.knnGDJUVIz4TcrVN7ARyAtfel9_JlbYRn1t2VUFjNtIg.JPEG.msjin93/IMG_8470.JPG?type=w800"
             alt="pinggu"
           />
-          <div className="text-2xl mt-6 font-bold text-[#000060]">
-            생각하는 핑구
+          <div className="w-100% py-8 px-4">
+            <div className="flex items-center justify-between">
+              <p className="text-2xl font-bold text-[#191919]">생각하는 핑구</p>
+              <div className="flex justify-center w-12 border-solid border-[1px] border-[#E0E0E0] bg-[#F5F5F5] p-1 items-center cursor-pointer">
+                <FavoriteBorderOutlinedIcon
+                  sx={{ color: "#0000D8", width: "16px" }}
+                  className="mt-[2px] mr-1"
+                />
+                13
+              </div>
+            </div>
+            <div className="flex text-[12px] mt-3 text-[#757575] justify-between">
+              <p>
+                활동 일수 <span className="text-primary">10</span>
+              </p>
+              <p>
+                팔고 비운 횟수 <span className="text-primary">10</span>
+              </p>
+            </div>
           </div>
         </List>
 
         <List className="col-span-4 py-4 px-8">
           <div className="flex justify-between items-center mb-2">
             <div className="text-xl">획득한 배지</div>
-            <div className="text-xs">전체보기</div>
+            <div className="text-xs text-[#757575]">전체보기</div>
           </div>
           <div className="flex justify-between items-center">
             <ImgBox>
@@ -173,6 +191,49 @@ export default function Profile() {
               <List>리뷰 더보기</List>
             </div>
           </Slider>
+        </TBox>
+      </Box>
+      <Box>
+        <List className="bg-[#0000D8] justify-center p-5 mt-11 col-span-3">
+          <div className="text-base text-[#fff] mb-2 ">거래평점</div>
+          <div className="w-[106px] mx-auto">
+            <ProgressProvider valueStart={0} valueEnd={valueEnd}>
+              {(value: number) => (
+                <CircularProgressbar
+                  value={value}
+                  text={`${value}`}
+                  maxValue={5}
+                  counterClockwise
+                  strokeWidth={13}
+                  styles={buildStyles({
+                    textColor: "#ffffff",
+                    pathColor: "#ffffff",
+                    trailColor: "rgba(114, 114, 224, 0.6)",
+                    textSize: 32,
+                  })}
+                />
+              )}
+            </ProgressProvider>
+          </div>
+        </List>
+        <TBox className="col-span-9">
+          <Title className="pl-6 inline z-0">받은 거래 후기</Title>
+          <div className="overflow-hidden grid grid-cols-9 gap-x-6">
+            <div className="col-span-3 grid grid-cols-6 gap-x-6 w-[2000px] py-5">
+              {review.slice(0, 5).map((e: any, i: any) => (
+                <List className="py-6 px-5 flex col-span-1" key={i}>
+                  <Img className="w-12 h-12 mr-2" src={e.src} alt="pinggu" />
+                  <Review>
+                    <Nickname>{e.nickname}</Nickname>
+                    <Rating>
+                      {e.rating} {"🧊".repeat(e.rating)}
+                    </Rating>
+                    <Comment>{e.comment}</Comment>
+                  </Review>
+                </List>
+              ))}
+            </div>
+          </div>
         </TBox>
       </Box>
       <MoreReview>
