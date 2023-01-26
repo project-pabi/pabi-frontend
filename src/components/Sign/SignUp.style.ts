@@ -1,17 +1,20 @@
 import tw from "twin.macro";
 
+export const PabiLogoMain = tw.img`
+max-w-[100px] mx-auto pt-[90px]
+`;
+export const Container = tw.div`
+mx-auto w-[1344px] grid grid-cols-12 gap-6
+`;
 export const SignInContainer = tw.div`
-bg-[#E4E4F7] w-[588px] mx-auto mt-[100px] mb-10 rounded-[20px]
+bg-[#E4E4F7] mt-[50px] mb-[120px] rounded-[20px]
 shadow-[0_28px_40px_4px_rgba(0,0,0,0.18)]
-py-[70px] px-[102px] 
+pt-[68px] pb-20 px-[114px] col-span-6 col-start-4
 `;
 export const Title = tw.div`
-font-bold text-[40px] leading-[59px] text-[#424242] mt-5 mb-[50px]
+font-bold text-[36px] leading-[53px] text-[#424242] mb-4
+`;
 
-`;
-export const PabiLogo = tw.img`
-max-w-[100px] h-10 mx-auto my-0
-`;
 export const Input = tw.input`
 w-full h-12 bg-[#ffffff] rounded-[20px] py-[13.5px] px-6 mt-2 text-[14px] border-2
 focus:(outline-none border-[#0000D8])
