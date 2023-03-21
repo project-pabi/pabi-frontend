@@ -6,20 +6,22 @@ module.exports = {
   darkMode: "class", // or 'media' or 'class'
   theme: {
     screens: {
-      sm: "640px",
-      md: "768px",
-      lg: "1024px",
-      xl: "1280px",
-      "2xl": "1536px",
+      //DEFAULT: "0px",
+      sm: "600px", // small tablet
+      md: "768px", // big tablet
+      lg: "1024px", // ipad pro
+      xl: "1240px", // medium laptop
+      "2xl": "1440px", // large labtop, desktop
+      "3xl": "1920px", // QHD, 4K desktop
     },
     colors: ({ colors }) => ({
       inherit: colors.inherit,
       current: colors.current,
       transparent: colors.transparent,
-      black: colors.black,
+      //black: colors.black,
       white: colors.white,
       slate: colors.slate,
-      gray: colors.gray,
+      //gray: colors.gray,
       zinc: colors.zinc,
       neutral: colors.neutral,
       stone: colors.stone,
@@ -40,7 +42,52 @@ module.exports = {
       fuchsia: colors.fuchsia,
       pink: colors.pink,
       rose: colors.rose,
-      primary: "#0000D8",
+      primary: {
+        DEFAULT: "#0000D8",
+        // Bluealicious
+        100: "#E4E4F7",
+        200: "#C5C5F0",
+        300: "#A1A1E8",
+        400: "#7272E0",
+        500: "#0000D8",
+        600: "#0000C1",
+        700: "#0000A7",
+        800: "#000088",
+        900: "#000060",
+        variant: "#0000A7",
+      },
+      secondary: {
+        // Cyber Yellow
+        100: "#FFF6E4",
+        200: "#FFEEC5",
+        300: "#FFE6A1",
+        400: "#FFDD72",
+        500: "#FFD400",
+        600: "#E4BD00",
+        700: "#C5A400",
+        800: "#A18600",
+        900: "#725E00",
+        variant: "#C5A400",
+      },
+      gray: {
+        // Gray
+        100: "#F5F5F5",
+        200: "#EEE",
+        300: "#E0E0E0",
+        400: "#BDBDBD",
+        500: "#9E9E9E",
+        600: "#757575",
+        700: "#616161",
+        800: "#424242",
+        900: "#212121",
+      },
+      black: "#191919",
+      system: {
+        success: "#191919",
+        caution: "#212121",
+        error: "#ED4D4D",
+      },
+      background: "#FFF",
     }),
     columns: {
       auto: "auto",
@@ -92,6 +139,7 @@ module.exports = {
       14: "3.5rem",
       16: "4rem",
       20: "5rem",
+      22: "5.5rem",
       24: "6rem",
       28: "7rem",
       32: "8rem",
@@ -296,7 +344,8 @@ module.exports = {
       DEFAULT: theme("colors.gray.200", "currentColor"),
     }),
     borderOpacity: ({ theme }) => theme("opacity"),
-    borderRadius: {
+    borderRadius: ({ theme }) => ({
+      ...theme("spacing"),
       none: "0px",
       sm: "0.125rem",
       DEFAULT: "0.25rem",
@@ -306,7 +355,7 @@ module.exports = {
       "2xl": "1rem",
       "3xl": "1.5rem",
       full: "9999px",
-    },
+    }),
     borderSpacing: ({ theme }) => ({
       ...theme("spacing"),
     }),
@@ -325,6 +374,7 @@ module.exports = {
       xl: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
       "2xl": "0 25px 50px -12px rgb(0 0 0 / 0.25)",
       inner: "inset 0 2px 4px 0 rgb(0 0 0 / 0.05)",
+      signature: "0px 4px 20px 4px rgba(198, 198, 224, 0.8)",
       none: "none",
     },
     boxShadowColor: ({ theme }) => theme("colors"),
@@ -342,7 +392,18 @@ module.exports = {
       150: "1.5",
       200: "2",
     },
-    container: {},
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: "1rem",
+        sm: "1.5rem",
+        md: "1.5rem",
+        lg: "1.5rem",
+        xl: "0",
+        "2xl": "0",
+        "3xl": "0",
+      },
+    },
     content: {
       none: "none",
     },
@@ -449,6 +510,11 @@ module.exports = {
       "10/12": "83.333333%",
       "11/12": "91.666667%",
       full: "100%",
+      "1/7": "14.285714%",
+      "1/8": "12.5%",
+      "1/9": "11.111111%",
+      "1/10": "10%",
+      "1/11": "9.090909%",
     }),
     flexGrow: {
       0: "0",
@@ -508,6 +574,33 @@ module.exports = {
       "7xl": ["4.5rem", { lineHeight: "1" }],
       "8xl": ["6rem", { lineHeight: "1" }],
       "9xl": ["8rem", { lineHeight: "1" }],
+      "title-0": ["3.5rem", { lineHeight: "5.25rem", fontWeight: "700" }],
+      "title-1": ["2.75rem", { lineHeight: "4rem", fontWeight: "700" }],
+      "title-2": ["2.5rem", { lineHeight: "3.75rem", fontWeight: "700" }],
+      Headline3: ["2.25rem", { lineHeight: "3.313rem", fontWeight: "700" }],
+      Headline4: ["2rem", { lineHeight: "2.938rem", fontWeight: "700" }],
+      "section-title-1": [
+        "1.5rem",
+        { lineHeight: "2.25rem", fontWeight: "700" },
+      ],
+      "section-title-2": [
+        "1.25rem",
+        { lineHeight: "1.875rem", fontWeight: "700" },
+      ],
+      "section-title-1-sub": [
+        "1.5rem",
+        { lineHeight: "2.25rem", fontWeight: "700" },
+      ],
+      "section-title-3-b": [
+        "1rem",
+        { lineHeight: "1.5rem", fontWeight: "700" },
+      ],
+      "section-title-3-m": [
+        "1rem",
+        { lineHeight: "1.5rem", fontWeight: "500" },
+      ],
+      "list-title": ["1.125rem", { lineHeight: "1.875rem", fontWeight: "700" }],
+      "body-3-r": ["0.75rem", { lineHeight: "1.125rem" }],
     },
     fontWeight: {
       thin: "100",
@@ -761,21 +854,23 @@ module.exports = {
       prose: "65ch",
       ...breakpoints(theme("screens")),
     }),
-    minHeight: {
+    minHeight: ({ theme, breakpoints }) => ({
       0: "0px",
       full: "100%",
       screen: "100vh",
       min: "min-content",
       max: "max-content",
       fit: "fit-content",
-    },
-    minWidth: {
+      ...theme("spacing"),
+    }),
+    minWidth: ({ theme, breakpoints }) => ({
       0: "0px",
       full: "100%",
       min: "min-content",
       max: "max-content",
       fit: "fit-content",
-    },
+      ...theme("spacing"),
+    }),
     objectPosition: {
       bottom: "bottom",
       center: "center",
@@ -1070,5 +1165,19 @@ module.exports = {
     "active",
     "disabled",
   ],
-  plugins: [],
+  plugins: [
+    function ({ addComponents }) {
+      addComponents({
+        ".container": {
+          maxWidth: "100%",
+          "@screen xl": {
+            maxWidth: "1080px",
+          },
+          "@screen 2xl": {
+            maxWidth: "1200px",
+          },
+        },
+      });
+    },
+  ],
 };

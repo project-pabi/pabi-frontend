@@ -18,16 +18,16 @@ import {
 
 const Navbar = () => {
   return (
-    <nav className="border-solid border-b border-[#D9D9D9] h-[189px] pt-12 shadow-[0_4px_20px_4px_rgba(198,198,224,0.8)]">
+    <nav className="border-solid border-b border-white h-[189px] pt-12 shadow-[0_4px_20px_4px_rgba(198,198,224,0.8)]">
       <NavContainer>
-        <div className="flex items-center justify-between border-solid pb-3 border-[#EEEEEE] border-b-[1px] ">
+        <div className="flex items-center justify-between pb-3 max-w-[1280px] mx-auto">
           <Link to="/">
             <PabiLogo src={Logo} />
           </Link>
           <div className="relative">
             <SearchBox placeholder="검색"></SearchBox>
             <div className="absolute top-3 right-5">
-              <SearchIcon className="text-[#9E9E9E]" />
+              <SearchIcon className="text-gray-500" />
             </div>
           </div>
           <div className="flex items-center">
@@ -41,16 +41,17 @@ const Navbar = () => {
             <Menu>내 물건 팔고 비우기</Menu>
           </div>
         </div>
-        <div className="flex items-center justify-between mt-7">
+        <div className="border-solid border-gray-200 border-b w-full"></div>
+        <div className="flex items-center justify-between mt-7 max-w-[1280px] mx-auto">
           <div className="flex">
             <Link to="/realtime">
               <SubMenu>실시간 경매</SubMenu>
             </Link>
-            <SubMenu className="cursor-not-allowed mr-0 text-[#9e9e9e]">
+            <SubMenu className="cursor-not-allowed mr-0 text-gray-500">
               일반 경매
             </SubMenu>
           </div>
-          <div className="width"></div>
+
           <div className="flex">
             <Link to="/signin" className="mr-9">
               <Sign>

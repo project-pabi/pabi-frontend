@@ -8,18 +8,18 @@ grid grid-cols-12 gap-x-6
 `;
 
 export const CategoryContainer = tw.div`
-col-span-3 mt-[124px]
+col-span-3 mt-[90px]
 `;
 export const CategoryDiv = tw.div`
-mt-4 first-of-type:mt-5
+mt-4 first-of-type:mt-5 flex items-center
 `;
 export const CategoryCheckBox = styled.input.attrs({ type: "checkbox" })`
   ${tw`
-  w-[15px] h-[15px] mr-[6.5px] align-middle mb-[2px] cursor-pointer 
+  w-[15px] h-[15px] mr-[6.5px] cursor-pointer 
   `}
 `;
 export const CategoryLabel = tw.label`
-text-sm font-normal cursor-pointer 
+text-sm font-normal cursor-pointer w-full
 `;
 export const PrettoSlider = styled(Slider)({
   color: "#BDBDBD !important",
@@ -65,48 +65,68 @@ export const PrettoSlider = styled(Slider)({
   },
 });
 export const ItemContainer = tw.div`
-col-span-9 mt-[124px] 
+col-span-9 mt-[90px] 
 `;
 export const ItemInsideContainer = tw.div`
 grid grid-cols-9 gap-x-6
 `;
-export const Item = tw.div`
-col-span-3 h-[380px] shadow-[4px_4px_12px_rgba(0,0,0,0.25)] rounded-[20px] mb-9
+export const HowMuch = tw.div`
+font-normal text-xs border-solid border border-gray-300 p-1 w-32 text-gray-800  text-center
 `;
-export const ItemImgBox = tw.div`
-h-[224px] overflow-hidden bg-cover relative
+export const CheckBoxWrapper = tw.div`
+  relative
+  mr-[10px]
 `;
-export const ItemImg = tw.img`
-rounded-tl-[20px] rounded-tr-[20px] h-100% object-cover
+export const RightLine = tw.div`
+px-2 border-solid border-gray-300 border-r 
 `;
-export const Live = tw.div`
-absolute bg-[#ED4D4D] rounded-[15px] px-2 text-white text-base z-10 top-4 left-5
+export const CategoryChip = tw.div`
+inline-flex bg-gray-300 rounded-5 px-4 py-[10px] items-center w-auto mr-[10px] my-[10px]
 `;
-export const Heart = tw.div`
-absolute bg-[#EEEEEE] rounded-[50%] z-10 top-4 right-4 w-10 h-10 text-primary text-center leading-[35px] cursor-pointer
+export const CategoryChipText = tw.div`
+font-normal	text-sm	text-gray-800 mr-[10px]
 `;
-export const FreeDelivery = tw.div`
-absolute bg-[rgba(0, 0, 0, 0.4)] rounded-[15px] px-2 py-[2px] text-white text-sm z-10 bottom-10 right-4
+
+export const CheckBoxLabel = styled.label`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 44px;
+  height: 20px;
+  border-radius: 4px;
+  background: #bebebe;
+  transition: 0.2s;
+  cursor: pointer;
+  &::after {
+    content: "";
+    display: block;
+    border-radius: 4px;
+    width: 28px;
+    height: 22px;
+    margin: -2px;
+    margin-left: -4px;
+    background: #ffffff;
+    box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
+    transition: 0.2s;
+  }
 `;
-export const Status = tw.div`
-absolute bg-[rgba(0, 0, 0, 0.4)] px-2 text-white text-base z-10 bottom-0 font-bold w-100% h-[32px] flex items-center
-px-4 py-1 justify-between
-`;
-export const ItemText = tw.div`
-p-5 h-[156px]
-`;
-export const Price = tw.div` 
-text-[24px] leading-[28px] font-bold text-primary mb-1
-`;
-export const ItemTitle = tw.div`
-text-base text-[#212121] font-normal mb-2
-`;
-export const KeywordBox = tw.div`
-flex mb-2
-`;
-export const Keyword = tw.div`
-bg-[#EEEEEE] rounded-[20px] px-2 py-[2px] font-normal text-xs text-[#424242] mr-1 last:mr-0
-`;
-export const Locate = tw.div`
-text-xs text-[#212121] font-normal flex items-center
+export const CheckBox = styled.input`
+  opacity: 0;
+  z-index: 1;
+  border-radius: 15px;
+  width: 42px;
+  height: 26px;
+  &:checked + ${CheckBoxLabel} {
+    transition: 0.2s;
+    background: #0000d8;
+    &::after {
+      content: "";
+      display: block;
+      border-radius: 4px;
+      width: 28px;
+      height: 22px;
+      margin-left: 21px;
+      transition: 0.2s;
+    }
+  }
 `;

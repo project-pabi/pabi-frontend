@@ -25,6 +25,7 @@ import ProgressProvider from "./ProgressProvider";
 import Slider from "react-slick";
 import More from "./more.png";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 export default function Profile() {
   const sliderRef = useRef<any>(null);
@@ -75,7 +76,7 @@ export default function Profile() {
 
   return (
     <Container>
-      <div className="font-bold text-[40px] leading-[60px] mb-[120px] pl-10">
+      <div className="font-bold text-title-2 mb-[120px] pl-10">
         <span className="text-primary">생각하는 핑구</span>님의 프로필
       </div>
       <Box className="mb-5">
@@ -87,8 +88,10 @@ export default function Profile() {
           />
           <div className="w-100% py-8 px-4">
             <div className="flex items-center justify-between">
-              <p className="text-2xl font-bold text-[#191919]">생각하는 핑구</p>
-              <div className="flex justify-center w-12 border-solid border-[1px] border-[#E0E0E0] bg-[#F5F5F5] p-1 items-center cursor-pointer">
+              <p className="text-section-title-1 font-bold text-black">
+                생각하는 핑구
+              </p>
+              <div className="flex justify-center w-12 border-solid border-[1px] border-gray-300 bg-gray-100 p-1 items-center cursor-pointer">
                 <FavoriteBorderOutlinedIcon
                   sx={{ color: "#0000D8", width: "16px" }}
                   className="mt-[2px] mr-1"
@@ -96,7 +99,7 @@ export default function Profile() {
                 13
               </div>
             </div>
-            <div className="flex text-[12px] mt-3 text-[#757575] justify-between">
+            <div className="flex text-xs mt-3 text-gray-600 justify-between">
               <p>
                 활동 일수 <span className="text-primary">10</span>
               </p>
@@ -109,8 +112,8 @@ export default function Profile() {
 
         <List className="col-span-4 py-4 px-8">
           <div className="flex justify-between items-center mb-2">
-            <div className="text-xl">획득한 배지</div>
-            <div className="text-xs text-[#757575]">전체보기</div>
+            <div className="text-section-title-2">획득한 배지</div>
+            <div className="text-xs text-gray-600">전체보기</div>
           </div>
           <div className="flex justify-between items-center">
             <ImgBox>
@@ -130,14 +133,14 @@ export default function Profile() {
           </div>
         </List>
         <List className="col-span-4 px-7 py-6">
-          <div className="text-base text-[#424242]">
+          <div className="text-base text-800">
             김파비. 나이 1세. 돈이 된다면 무엇이든 팔아제끼는 펭귄.
           </div>
         </List>
       </Box>
       <Box>
-        <List className="bg-[#0000D8] justify-center p-5 mt-11 col-span-3">
-          <div className="text-base text-[#fff] mb-2 ">거래평점</div>
+        <List className="bg-primary justify-center p-5 mt-11 col-span-3">
+          <div className="text-base text-white mb-2 ">거래평점</div>
           <div className="w-[106px] mx-auto">
             <ProgressProvider valueStart={0} valueEnd={valueEnd}>
               {(value: number) => (
@@ -148,8 +151,8 @@ export default function Profile() {
                   counterClockwise
                   strokeWidth={13}
                   styles={buildStyles({
-                    textColor: "#ffffff",
-                    pathColor: "#ffffff",
+                    textColor: "#fff",
+                    pathColor: "#fff",
                     trailColor: "rgba(114, 114, 224, 0.6)",
                     textSize: 32,
                   })}
@@ -194,8 +197,8 @@ export default function Profile() {
         </TBox>
       </Box>
       <Box>
-        <List className="bg-[#0000D8] justify-center p-5 mt-11 col-span-3">
-          <div className="text-base text-[#fff] mb-2 ">거래평점</div>
+        <List className="bg-primary justify-center p-5 mt-11 col-span-3">
+          <div className="text-base text-white mb-2 ">거래평점</div>
           <div className="w-[106px] mx-auto">
             <ProgressProvider valueStart={0} valueEnd={valueEnd}>
               {(value: number) => (
@@ -206,8 +209,8 @@ export default function Profile() {
                   counterClockwise
                   strokeWidth={13}
                   styles={buildStyles({
-                    textColor: "#ffffff",
-                    pathColor: "#ffffff",
+                    textColor: "#fff",
+                    pathColor: "#fff",
                     trailColor: "rgba(114, 114, 224, 0.6)",
                     textSize: 32,
                   })}
@@ -237,9 +240,14 @@ export default function Profile() {
         </TBox>
       </Box>
       <MoreReview>
-        <img src={More} alt="more" className="w-[52px] h-[52px]"></img>
-        <p className="mx-6 text-xl">판매 내역 보기</p>
-        <p>팔고 비운 내역을 확인해보세요</p>
+        <img src={More} alt="more" className="w-18 h-18"></img>
+        <p className="mx-6 text-section-title-2 font-medium text-gray-900">
+          판매 내역 보기
+        </p>
+        <p className="ml-16 text-base text-gray-800">
+          회원이 팔고 비운 내역을 확인해보세요
+        </p>
+        <ExpandMoreIcon sx={{ fontSize: "40px" }} className="last:ml-[auto]" />
       </MoreReview>
     </Container>
   );
