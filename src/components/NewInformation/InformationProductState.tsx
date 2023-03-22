@@ -3,13 +3,14 @@ import {useNavigate} from 'react-router-dom';
 import {useItemInfoStore} from '@stores/itemInfoStore';
 import {yupResolver} from '@hookform/resolvers/yup';
 import yup from '@/plugin/yup';
-import {Status} from './Status.type';
+import {StatusMap, status, StatusType, StatusKey} from './Status.type';
 import {Input, Label, PrevButton, NextButton, TabTitle, TitleHighlight} from './Information.style';
 import Tag from "@component/Tag/Tag";
 import React, {useState, useEffect} from "react";
+import {UseFormGetValues, UseFormSetValue} from "react-hook-form/dist/types/form";
 
 interface FormValues {
-  state: string[];
+  state: StatusKey[];
 }
 
 const schema = yup
@@ -19,35 +20,55 @@ const schema = yup
 .required();
 
 interface InformationTagProps {
-  control: Control<FormValues>
-  tagList: string[]
-  setTagList: React.Dispatch<React.SetStateAction<string[]>>
+  control: Control<FormValues>;
+  tagList: string[];
+  getValues: UseFormGetValues<FormValues>;
+  setValue: UseFormSetValue<FormValues>;
+  setTagList: React.Dispatch<React.SetStateAction<StatusKey[]>>;
 }
 
-const InformationTag = ({control, tagList, setTagList}: InformationTagProps) => {
-  const stateWatch = useWatch<FormValues>({control, name: "state"});
-  useEffect(() => {
-    if (Array.isArray(stateWatch)) {
-      setTagList(stateWatch)
-    }
-  }, [stateWatch])
-  return (<Tag className="w-full" readonly={true} tagList={tagList} setTagList={setTagList}></Tag>)
+const InformationTag = ({control, tagList, getValues, setValue, setTagList}: InformationTagProps) => {
+
+  return (
+      <Tag
+          className="w-full"
+          readonly={false}
+          creatable={false}
+          tagList={tagList}
+          deleteTagItem={(index) => {
+            const value = getValues('state');
+            value.splice(index, 1);
+            setValue('state', value);
+          }}
+          deleteAllTag={() => {
+            setTagList([]);
+            setValue('state', []);
+          }}></Tag>)
 }
 
 const Information = (props: any) => {
-  const [tagList, setTagList] = useState<string[]>([])
+  const [tagList, setTagList] = useState<StatusKey[]>([])
   const {state, setState} = useItemInfoStore((state) => state);
-
   const form = useForm<FormValues>({resolver: yupResolver(schema)});
-  const {register, control, handleSubmit, formState, setValue} = form;
-
+  const {register, control, handleSubmit, formState, getValues, setValue} = form;
+  const stateWatch = useWatch<FormValues>({control, name: "state"});
   const navigate = useNavigate();
+
+  const getTagText = (): string[] => {
+    return tagList.map((tag) => StatusMap[tag]);
+  }
 
   const onSubmit = (data: any) => {
     console.log(data);
     setState(data.state);
     navigate('../photo');
   };
+
+  useEffect(() => {
+    if (Array.isArray(stateWatch)) {
+      setTagList(stateWatch)
+    }
+  }, [stateWatch])
 
   useEffect(() => {
     setTagList(state)
@@ -60,14 +81,19 @@ const Information = (props: any) => {
           물건의 <TitleHighlight>상태</TitleHighlight>는 어떤가요?
         </TabTitle>
         <div className="flex justify-center">
-          <div className="w-[432px] ">
+          <div className="w-[432px]">
 
-            <InformationTag tagList={tagList} setTagList={setTagList} control={control}></InformationTag>
+            <InformationTag
+                tagList={getTagText()}
+                getValues={getValues}
+                setValue={setValue}
+                setTagList={setTagList}
+                control={control}></InformationTag>
             <ul className="flex justify-center gap-5 w-full flex-wrap">
-              {Status.map((status) => (
+              {status.map((status) => (
                   <li key={status} className="last:mr-0">
                     <Input type={'checkbox'} id={status} value={status} {...register('state')} />
-                    <Label htmlFor={status}>{status}</Label>
+                    <Label htmlFor={status}>{StatusMap[status]}</Label>
                   </li>
               ))}
             </ul>
@@ -81,4 +107,5 @@ const Information = (props: any) => {
       </form>
   );
 };
+
 export default Information;

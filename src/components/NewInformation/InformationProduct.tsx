@@ -18,11 +18,11 @@ const Information = () => {
   const tab2Match = useMatch('/write/product/category') != null;
   const tab3Match = useMatch('/write/product/state') != null;
   const tab4Match = useMatch('/write/product/photo') != null;
-  const tab5Match = useMatch('/write/product/explan') != null;
+  const tab5Match = useMatch('/write/product/explain') != null;
 
   const navigate = useNavigate();
   const itemInfoStore = useItemInfoStore((state) => state);
-  const { isNameComplite, isCategoryComplite, isStateComplite, isPhotoComplite, isExplanComplite } = itemInfoStore;
+  const { isNameComplete, isCategoryComplete, isStateComplete, isPhotoComplete, isExplainComplete } = itemInfoStore;
 
   const getTabIndex = () => {
     if (tab5Match) return 4;
@@ -38,7 +38,7 @@ const Information = () => {
   };
 
   const moveCategoryTab = () => {
-    if (!isNameComplite()) {
+    if (!isNameComplete()) {
       alert('제품 이름을 먼저 입력해 주세요');
       return;
     }
@@ -46,7 +46,7 @@ const Information = () => {
   };
 
   const moveStateTab = () => {
-    if (!isCategoryComplite()) {
+    if (!isCategoryComplete()) {
       alert('제품 카테고리를 먼저 입력해 주세요');
       return;
     }
@@ -54,19 +54,19 @@ const Information = () => {
   };
 
   const movePhotoTab = () => {
-    if (!isStateComplite()) {
+    if (!isStateComplete()) {
       alert('제품 상태를 먼저 입력해 주세요');
       return;
     }
     navigate('./photo');
   };
 
-  const moveExplanTab = () => {
-    if (!isPhotoComplite()) {
+  const moveExplainTab = () => {
+    if (!isPhotoComplete()) {
       alert('제품 사진을 먼저 입력해 주세요');
       return;
     }
-    navigate('./explan');
+    navigate('./explain');
   };
 
   return (
@@ -74,19 +74,19 @@ const Information = () => {
       <Title>상품정보 입력</Title>
       <SubTitle>비우고 싶은 제품이 무엇인지 설명해주세요!</SubTitle>
       <TabList className="mb-10" tabIndex={getTabIndex()}>
-        <Tab isSelect={tab1Match} isComplite={isNameComplite()} onClick={moveNameTab}>
+        <Tab isSelect={tab1Match} isComplete={isNameComplete()} onClick={moveNameTab}>
           제품 이름 입력
         </Tab>
-        <Tab isSelect={tab2Match} isComplite={isCategoryComplite()} onClick={moveCategoryTab}>
+        <Tab isSelect={tab2Match} isComplete={isCategoryComplete()} onClick={moveCategoryTab}>
           제품 종류 선택
         </Tab>
-        <Tab isSelect={tab3Match} isComplite={isStateComplite()} onClick={moveStateTab}>
+        <Tab isSelect={tab3Match} isComplete={isStateComplete()} onClick={moveStateTab}>
           제품 상태 선택
         </Tab>
-        <Tab isSelect={tab4Match} isComplite={isPhotoComplite()} onClick={movePhotoTab}>
+        <Tab isSelect={tab4Match} isComplete={isPhotoComplete()} onClick={movePhotoTab}>
           제품 사진 등록
         </Tab>
-        <Tab isSelect={tab5Match} isComplite={isExplanComplite()} onClick={moveExplanTab}>
+        <Tab isSelect={tab5Match} isComplete={isExplainComplete()} onClick={moveExplainTab}>
           제품 설명 입력
         </Tab>
       </TabList>

@@ -5,6 +5,7 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import yup from '@/plugin/yup';
 import {Category, categorys} from './Category.type';
 import {Input, Label, NextButton, PrevButton, TabTitle, TitleHighlight} from './Information.style';
+import {useEffect} from "react";
 
 interface FormValues {
   category: string;
@@ -26,7 +27,9 @@ const Information = () => {
     navigate('../state');
   };
 
-  setValue('category', category);
+  useEffect(() => {
+    setValue('category', category);
+  }, [])
 
   return (
       <form onSubmit={handleSubmit(onSubmit)}>

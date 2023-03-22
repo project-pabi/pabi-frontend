@@ -26,10 +26,10 @@ const Information = () => {
   };
 
   const navigate = useNavigate();
-  const { isExplanComplite, isTypeComplite, isPriceComplite, isTradeTypeComplite } = useItemInfoStore((state) => state);
+  const { isExplainComplete, isTypeComplete, isPriceComplete, isTradeTypeComplete } = useItemInfoStore((state) => state);
 
   const moveTypeTab = () => {
-    if (!isExplanComplite()) {
+    if (!isExplainComplete()) {
       alert('제품 설명을 먼저 입력해 주세요');
       return;
     }
@@ -37,7 +37,7 @@ const Information = () => {
   };
 
   const movePriceTab = () => {
-    if (!isTypeComplite()) {
+    if (!isTypeComplete()) {
       alert('경매 방식을 먼저 입력해 주세요');
       return;
     }
@@ -45,7 +45,7 @@ const Information = () => {
   };
 
   const moveTradeTypeTab = () => {
-    if (!isPriceComplite()) {
+    if (!isPriceComplete()) {
       alert('시작 가격을 먼저 입력해 주세요');
       return;
     }
@@ -58,13 +58,13 @@ const Information = () => {
       <SubTitle>비우고 싶은 제품이 무엇인지 설명해주세요!</SubTitle>
 
       <TabList className="mb-10" tabIndex={getTabIndex()}>
-        <Tab isSelect={tab1Match} isComplite={isTypeComplite()} onClick={moveTypeTab}>
+        <Tab isSelect={tab1Match} isComplete={isTypeComplete()} onClick={moveTypeTab}>
           경매 방식 선택
         </Tab>
-        <Tab isSelect={tab2Match} isComplite={isPriceComplite()} onClick={movePriceTab}>
+        <Tab isSelect={tab2Match} isComplete={isPriceComplete()} onClick={movePriceTab}>
           시작 가격 입력
         </Tab>
-        <Tab isSelect={tab3Match} isComplite={isTradeTypeComplite()} onClick={moveTradeTypeTab}>
+        <Tab isSelect={tab3Match} isComplete={isTradeTypeComplete()} onClick={moveTradeTypeTab}>
           거래 방식 선택
         </Tab>
       </TabList>

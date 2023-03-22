@@ -9,7 +9,7 @@ interface TabProps {
   className?: string;
   attributes?: any;
   isSelect?: boolean;
-  isComplite?: boolean;
+  isComplete?: boolean;
   selectClass?: string;
   unselectClass?: string;
   tabWidth?: number;
@@ -36,7 +36,7 @@ const Tab: FC<TabProps> = ({
   attributes,
   className = '',
   isSelect = false,
-  isComplite = false,
+  isComplete = false,
   selectClass = '',
   unselectClass = '',
   tabWidth = 0,
@@ -52,7 +52,7 @@ const Tab: FC<TabProps> = ({
       style={{ width: `${tabWidth}px` }}
       className={'pl-1 text-base ' + className + (isSelect ? selectClass : unselectClass)}>
       {children}
-      {isComplite && <CheckIcon className="ml-1 pr-[-0.25rem]" />}
+      {isComplete && <CheckIcon className="ml-1 pr-[-0.25rem]" />}
     </TabButtton>
   );
 };

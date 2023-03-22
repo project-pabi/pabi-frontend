@@ -2,28 +2,39 @@ import React, {FC, useState} from 'react'
 import styled from 'styled-components'
 import tw from "twin.macro";
 import ClearIcon from '@mui/icons-material/Clear';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import {status, StatusMap} from "@component/NewInformation/Status.type";
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 interface Props {
-  className?: string
-  readonly?: boolean
-  tagList: string[]
-  setTagList: React.Dispatch<React.SetStateAction<string[]>>
-  tagRemoveEvent?: (index: number, name: string) => void
+  className?: string;
+  readonly?: boolean;
+  creatable?: boolean;
+  tagList: string[];
+  createTagItem?: (name: string) => void;
+  deleteTagItem?: (index: number, name: string) => void;
+  deleteAllTag?: () => void;
+  onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  recommendTag?: string[];
 }
 
 interface TagBoxProps {
   readonly?: boolean
 }
 
-const Tag: FC<Props> = ({className, readonly, tagList, setTagList, tagRemoveEvent}) => {
+const Tag: FC<Props> = (props: Props) => {
+  const {className, readonly, creatable, tagList} = props;
+
   const [tagItem, setTagItem] = useState('')
 
   const onKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if ((e.target as HTMLInputElement).value.length !== 0 && e.key === 'Enter') {
       submitTagItem()
     }
+    props?.onKeyUp?.(e);
     e.preventDefault()
   }
+
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault()
@@ -31,42 +42,63 @@ const Tag: FC<Props> = ({className, readonly, tagList, setTagList, tagRemoveEven
   }
 
   const submitTagItem = () => {
-    let updatedTagList: string[] = [...tagList]
-    updatedTagList.push(tagItem)
-    setTagList(updatedTagList)
+    props.createTagItem?.(tagItem)
     setTagItem('')
   }
 
   const deleteTagItem = (index: number) => {
-    console.log(index)
     let removeTagList: string[] = [...tagList]
     const removedTag = removeTagList.splice(index, 1);
-    setTagList(removeTagList)
-    tagRemoveEvent && tagRemoveEvent(index, removedTag[0])
+    props.deleteTagItem?.(index, removedTag[0])
+  }
+
+  const deleteAllItem = () => {
+    props.deleteAllTag?.();
   }
 
   return (
       <WholeBox className={className}>
-        <TagBox readonly={readonly}>
-          {tagList.map((tagItem, index) => {
-            return (
-                <TagItem key={index}>
-                  <Text>{tagItem}</Text>
-                  {!readonly && <Button type="button" onClick={() => deleteTagItem(index)}><ClearIcon
-                      fontSize="small"></ClearIcon></Button>}
-                </TagItem>
-            )
-          })}
-          {!readonly && <TagInput
-              readOnly={readonly}
-              type='text'
-              tabIndex={2}
-              onChange={e => setTagItem(e.target.value)}
-              value={tagItem}
-              onKeyUp={onKeyUp}
-              onKeyDown={onKeyDown}
-          />}
+
+        <TagBox readonly={readonly} className="cancelFloat">
+          <div className="    float-left  flex w-[calc(100%-35px)] gap-2
+                flex-wrap">
+            {tagList.map((tagItem, index) => {
+              return (
+                  <TagItem key={index}>
+                    <Text>{tagItem}</Text>
+                    {!readonly && <Button type="button" onClick={() => deleteTagItem(index)}><ClearIcon
+                        fontSize="small"></ClearIcon></Button>}
+                  </TagItem>
+              )
+            })}
+            {creatable && <TagInput
+                readOnly={readonly}
+                type='text'
+                tabIndex={2}
+                onChange={e => setTagItem(e.target.value)}
+                value={tagItem}
+                onKeyUp={onKeyUp}
+                onKeyDown={onKeyDown}
+            />}
+          </div>
+          <button type="button" className="text-primary float-right h-10" onClick={() => deleteAllItem()}><CancelOutlinedIcon
+              fontSize="small"></CancelOutlinedIcon></button>
         </TagBox>
+        {
+            !!(props.recommendTag?.length) &&
+            <ul className="flex justify-start gap-2 w-full flex-wrap mt-4">
+              {props.recommendTag?.map((tag) => (
+                  <li key={tag} className="last:mr-0">
+                    <TagItem key={tag}>
+                      <Text>{tag}</Text>
+                      <Button type="button">
+                        <AddOutlinedIcon fontSize="small"></AddOutlinedIcon>
+                      </Button>
+                    </TagItem>
+                  </li>
+              ))}
+            </ul>
+        }
       </WholeBox>
   )
 }
@@ -82,10 +114,8 @@ const WholeBox = styled.div(({className}: WholeBoxProps) => [
 
 const TagBox = styled.div((props: TagBoxProps) => [
   tw`
-      flex
-      flex-wrap
-      gap-2
-      px-4
+      pl-4
+      pr-5
       py-3.5
       min-h-[70px]
       bg-gray-100
@@ -102,10 +132,13 @@ const TagItem = tw.div`
   px-4
   py-2.5
   rounded-5
-  text-primary
+  text-gray-700
   border-solid
-  border-primary
-  border-2
+  border-gray-400
+  border
+  hover:border-primary
+  hover:text-primary
+  hover:border-2
   text-sm
   leading-none
 `
@@ -123,6 +156,7 @@ const Button = tw.button`
 const TagInput = tw.input`
   w-5
   min-w-5
+  h-10
   bg-transparent  
   border-none
   outline-none

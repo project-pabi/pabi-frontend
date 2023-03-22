@@ -11,6 +11,7 @@ module.exports = {
       '@store': path.join(__dirname, 'src/store/'),
       '@stores': path.join(__dirname, 'src/stores/'),
       '@plugin': path.join(__dirname, 'src/plugin/'),
+      '@assets': path.join(__dirname, 'src/assets/'),
     },
   },
   jest: {

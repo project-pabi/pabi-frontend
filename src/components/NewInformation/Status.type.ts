@@ -1,4 +1,12 @@
-export const statusType = {
+export const status = [
+  'ItsNew',
+  'Clean',
+  'NoScratches',
+  'IHaveAReceipt',
+  'IHaveBoxAndWarranty',
+] as const;
+
+export const StatusMap = {
   ItsNew: '새거에요',
   Clean: '깨끗해요',
   NoScratches: '흠집 없어요',
@@ -6,6 +14,5 @@ export const statusType = {
   IHaveBoxAndWarranty: '박스•보증서 있어요',
 } as const;
 
-type StatusType = typeof statusType[keyof typeof statusType];
-
-export const Status: Array<StatusType> = ['새거에요', '깨끗해요', '흠집 없어요', '영수증 있어요', '박스•보증서 있어요'];
+export type StatusType = typeof StatusMap[keyof typeof StatusMap];
+export type StatusKey = keyof typeof StatusMap;

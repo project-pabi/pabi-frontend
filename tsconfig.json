@@ -24,7 +24,8 @@
       "@pages/*": ["./src/pages/*"],
       "@store/*": ["./src/store/*"],
       "@stores/*": ["./src/stores/*"],
-      "@plugin/*": ["./src/plugin/*"]
+      "@plugin/*": ["./src/plugin/*"],
+      "@assets/*": ["./src/assets/*"]
     }
   },
   "include": ["src", "craco.config.js"],

@@ -33,12 +33,18 @@ text-center
 rounded-[10px]
 `;
 export const TextBox = tw.input`
-w-[430px]
 h-[70px]
 bg-[#F5F5F5]
 rounded-[10px]
 p-6
 mt-[55px]
+`;
+export const TextArea = tw.textarea`
+w-full
+h-[196px]
+bg-[#F5F5F5]
+rounded-[10px]
+p-6
 `;
 export const PrevButton = tw.div`
 w-[85px]
@@ -86,9 +92,11 @@ export const Label = styled.label`
     leading-tight
   `}
 `;
+
 export const Input = styled.input`
   display: none;
   &:checked + ${Label} {
     ${tw`bg-white text-primary border-primary`}
   }
 `;
+

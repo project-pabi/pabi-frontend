@@ -4,6 +4,7 @@ import { useItemInfoStore } from '@stores/itemInfoStore';
 import { yupResolver } from '@hookform/resolvers/yup';
 import yup from '@/plugin/yup';
 import { NextButton, TabTitle, TextBox, TitleHighlight } from './Information.style';
+import {useEffect} from "react";
 
 interface FormValues {
   name: string;
@@ -29,14 +30,16 @@ const Information = (props: any) => {
     navigate('../category');
   };
 
-  setValue('name', name);
+  useEffect(() => {
+    setValue('name', name);
+  }, [])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <TabTitle>
         비우려는 물건의 <TitleHighlight>이름</TitleHighlight>을 알려주세요
       </TabTitle>
-      <TextBox type={'text'} placeholder="물건의 이름이 무엇인가요?" {...register('name')}></TextBox>
+      <TextBox className="w-[430px]" type={'text'} placeholder="물건의 이름이 무엇인가요?" {...register('name')}></TextBox>
       <p>{formState.errors.name?.message}</p>
       <div className="flex justify-center mt-10">
         <NextButton type="submit">다음으로</NextButton>

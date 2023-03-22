@@ -6,7 +6,7 @@ import {
   Category,
   State,
   Photo,
-  Explan,
+  Explain,
   Result,
   Auction,
   AuctionType,
@@ -20,7 +20,7 @@ export default (
       <Route path="category" element={<Category />}></Route>
       <Route path="state" element={<State />}></Route>
       <Route path="photo" element={<Photo />}></Route>
-      <Route path="explan" element={<Explan />}></Route>
+      <Route path="explain" element={<Explain />}></Route>
       <Route path="*" element={<Navigate to="./name"></Navigate>}></Route>
     </Route>
     <Route path="auction/*" element={<Auction />}>
