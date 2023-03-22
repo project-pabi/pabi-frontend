@@ -15,7 +15,6 @@ import {
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Box } from "@mui/material";
 import CategoryType from "./CategoryData";
-import StatusType from "./StatusData";
 import Dropzone from "./Dropzone";
 import { useNavigate } from "react-router-dom";
 
@@ -189,18 +188,7 @@ const Information = () => {
             ))}
           </div>
           <ul className="flex justify-center ">
-            {StatusType.map((i) => (
-              <li key={i.name} className="mr-[20px] last:mr-0">
-                <Input
-                  type={"checkbox"}
-                  id={i.name}
-                  value={i.name}
-                  checked={checkValue.includes(i.name) ? true : false}
-                  onChange={handleCheck}
-                />
-                <Label htmlFor={i.name}>{i.name}</Label>
-              </li>
-            ))}
+
           </ul>
           <div className="flex justify-center mt-10">
             <PrevButton onClick={onDecrement}>이전으로</PrevButton>

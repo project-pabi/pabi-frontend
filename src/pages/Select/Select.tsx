@@ -1,13 +1,6 @@
-import Footer from "../../components/Footer/Footer";
-import Method from "../../components/Information/Method";
-import Navbar from "../../components/Navbar/Navbar";
+// import Method from "../../components/Information/Method";
+import Method from '../../components/NewInformation/Method';
 function Select() {
-  return (
-    <>
-      <Navbar />
-      <Method />
-      <Footer />
-    </>
-  );
+  return <Method />;
 }
 export default Select;

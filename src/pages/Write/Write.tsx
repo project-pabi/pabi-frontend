@@ -1,13 +1,8 @@
-import Footer from "../../components/Footer/Footer";
-import Information from "../../components/Information/Information";
-import Navbar from "../../components/Navbar/Navbar";
+// import Information from "../../components/Information/Information";
+// import NewInformation from "../../components/NewInformation/Information";
+//import NewInformation from "../../components/NewInformation/InformationFormBuilder";
+import NewInformation from '@component/NewInformation/InformationWizardForm';
 function Write() {
-  return (
-    <>
-      <Navbar />
-      <Information />
-      <Footer />
-    </>
-  );
+  return <NewInformation />;
 }
 export default Write;
