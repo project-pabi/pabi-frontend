@@ -75,7 +75,7 @@ export default function Profile() {
   ]);
 
   return (
-    <Container>
+    <>
       <div className="font-bold text-title-2 mb-[120px] pl-10">
         <span className="text-primary">생각하는 핑구</span>님의 프로필
       </div>
@@ -249,6 +249,6 @@ export default function Profile() {
         </p>
         <ExpandMoreIcon sx={{ fontSize: "40px" }} className="last:ml-[auto]" />
       </MoreReview>
-    </Container>
+    </>
   );
 }

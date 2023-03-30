@@ -6,6 +6,9 @@ export default function Main() {
     <>
       <Navbar />
       <div className="container m-auto pt-[32px] pb-[88px]">
+        {/*profile container w-[1344px] m-auto pt-8 pb-[88px] justify-center*/}
+        {/*realtime container w-[1280px] m-auto pt-8 pb-[88px] justify-center
+        grid grid-cols-12 gap-x-6*/}
         <Outlet />
       </div>
       <Footer />
