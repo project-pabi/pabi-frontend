@@ -3,10 +3,10 @@ import {useNavigate} from 'react-router-dom';
 import {useItemInfoStore} from '@stores/itemInfoStore';
 import {yupResolver} from '@hookform/resolvers/yup';
 import yup from '@/plugin/yup';
-import {StatusMap, status, StatusType, StatusKey} from './Status.type';
-import {Input, Label, PrevButton, NextButton, TabTitle, TitleHighlight} from './Information.style';
+import {status, StatusKey, StatusMap} from './Status.type';
+import {Input, Label, NextButton, PrevButton, TabTitle, TitleHighlight} from './Information.style';
 import Tag from "@component/Tag/Tag";
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {UseFormGetValues, UseFormSetValue} from "react-hook-form/dist/types/form";
 
 interface FormValues {
@@ -48,14 +48,15 @@ const InformationTag = ({control, tagList, getValues, setValue, setTagList}: Inf
 
 const Information = (props: any) => {
   const [tagList, setTagList] = useState<StatusKey[]>([])
-  const {state, setState} = useItemInfoStore((state) => state);
+  const {state, setState,clear} = useItemInfoStore((state) => state);
   const form = useForm<FormValues>({resolver: yupResolver(schema)});
   const {register, control, handleSubmit, formState, getValues, setValue} = form;
   const stateWatch = useWatch<FormValues>({control, name: "state"});
   const navigate = useNavigate();
 
   const getTagText = (): string[] => {
-    return tagList.map((tag) => StatusMap[tag]);
+    console.log(tagList)
+    return tagList?.map((tag) => StatusMap[tag]) ?? {};
   }
 
   const onSubmit = (data: any) => {

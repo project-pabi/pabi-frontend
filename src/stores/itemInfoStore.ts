@@ -3,6 +3,7 @@ import {persist, devtools} from 'zustand/middleware';
 import {Auction} from "@component/NewInformation/Auction.type";
 import {Trade} from "@component/NewInformation/Trade.type";
 import axios from 'axios';
+import {StatusKey} from "@component/NewInformation/Status.type";
 
 export type Coordinate = {
   latitude: number,
@@ -12,7 +13,7 @@ export type Coordinate = {
 interface ItemInfoState {
   name: string;
   category: any;
-  state: any;
+  state: StatusKey[];
   photo: any;
   explainNote: string;
   explainTag: string[];
@@ -26,7 +27,7 @@ interface ItemInfoState {
 
   setName: (name: string) => void;
   setCategory: (category: any) => void;
-  setState: (state: any) => void;
+  setState: (state: StatusKey[]) => void;
   setPhoto: (photo: any) => void;
   setExplain: (explainNote: string, explainTag: string[]) => void;
   setExplainTag: (explainTag: string[]) => void;
@@ -34,6 +35,7 @@ interface ItemInfoState {
   setPrice: (price: number) => void;
   setTradeType: (tradeType: Trade) => void;
   setPlace: (address: string, coordinate: Coordinate) => void;
+  clear: () => void;
 
   createProduct: () => Promise<object>;
 
@@ -51,7 +53,7 @@ interface ItemInfoState {
 const state = {
   name: '',
   category: '',
-  state: '',
+  state: [] as StatusKey[],
   photo: '',
   explainNote: '',
   explainTag: [] as string[],
@@ -64,14 +66,14 @@ const state = {
   }
 };
 
-const action = (set: any,get:any) => ({
+const action = (set: any, get: any) => ({
   setName: (name: string): void => {
     set({name});
   },
   setCategory: (category: any): void => {
     set({category});
   },
-  setState: (state: any): void => {
+  setState: (state: StatusKey[]): void => {
     set({state});
   },
   setPhoto: (photo: any): void => {
@@ -95,6 +97,9 @@ const action = (set: any,get:any) => ({
   setPlace: (address: string, coordinate: Coordinate): void => {
     const place = {address, coordinate}
     set({place});
+  },
+  clear: (): void => {
+    set(state)
   },
 
   async createProduct(): Promise<object> {
@@ -142,7 +147,7 @@ const getter = (get: any) => ({
 
 const store = (set: any, get: any, _state: any) => ({
   ...state,
-  ...action(set,get),
+  ...action(set, get),
   ...getter(get),
 })
 
