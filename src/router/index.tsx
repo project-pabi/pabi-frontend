@@ -15,19 +15,18 @@ export default function index() {
     <Router>
       <Routes>
 
-        <Route path="" element={<Main />}>
+        <Route path="/" element={<Main />}>
           {Write}
+          <Route path="profile" element={<ProfilePage />} />
+          <Route path="realtime" element={<RealtimePage />} />
+          <Route path="event">
+            <Route index element={<EventPage />} />
+            <Route path="detail/:id" element={<EventDetailPage />} />
+          </Route>
         </Route>
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/signend" element={<SignEndPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/realtime" element={<RealtimePage />} />
-
-        <Route path="/select" element={<Select />} />
-        <Route path="/event" element={<EventPage />} />
-        <Route path="/event/detail/:id" element={<EventDetailPage />} />
-
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

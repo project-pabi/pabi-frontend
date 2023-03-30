@@ -40,7 +40,7 @@ const RealTime = () => {
   };
 
   return (
-    <Container>
+    <div className=" grid grid-cols-12 gap-x-6">
       <Category></Category>
       <ItemContainer>
         <div className="flex mb-10 items-center justify-between">
@@ -115,7 +115,7 @@ const RealTime = () => {
           <RealTimeItem />
         </ItemInsideContainer>
       </ItemContainer>
-    </Container>
+    </div>
   );
 };
 export default RealTime;
