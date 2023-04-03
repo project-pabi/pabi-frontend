@@ -1,16 +1,10 @@
-import { ExpandLess, ExpandMore, Refresh } from "@mui/icons-material";
-import { Collapse, List, ListItemButton, ListItemText } from "@mui/material";
-import { useEffect, useState } from "react";
-import {
-  CategoryCheckBox,
-  CategoryDiv,
-  CategoryLabel,
-  HowMuch,
-  PrettoSlider,
-} from "./Auction/RealTime.style";
-import tw from "twin.macro";
-import CategoryType from "./Auction/CategoryData";
-import { useCategoryStore } from "../store/categoryStore";
+import { ExpandLess, ExpandMore, Refresh } from '@mui/icons-material';
+import { Collapse, List, ListItemButton, ListItemText } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { CategoryCheckBox, CategoryDiv, CategoryLabel, HowMuch, PrettoSlider } from './Auction/RealTime.style';
+import tw from 'twin.macro';
+import CategoryType from './Auction/CategoryData';
+import { useCategoryStore } from '../store/categoryStore';
 
 function valuetext(value: number) {
   return `${value}`;
@@ -21,8 +15,7 @@ col-span-3 mt-[90px]
 `;
 
 const Category = () => {
-  const { checkedList, setCheckedList, priceRange, setPriceRange } =
-    useCategoryStore((state) => state);
+  const { checkedList, setCheckedList, priceRange, setPriceRange } = useCategoryStore((state) => state);
 
   const [open, setOpen] = useState(true);
 
@@ -34,6 +27,16 @@ const Category = () => {
     setPriceRange(newValue as number[]);
   };
 
+  const inputChangePrev = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.value.length <= 5) {
+      setPriceRange([parseInt(event.target.value || '0'), priceRange[1]]);
+    }
+  };
+  const inputChangeNext = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.value.length <= 5) {
+      setPriceRange([priceRange[0], parseInt(event.target.value)]);
+    }
+  };
   const onCheckedElement = (checked: boolean, item: string) => {
     if (checked) {
       setCheckedList([...checkedList, item]);
@@ -58,17 +61,11 @@ const Category = () => {
     setCheckedList([]);
   };
 
-  useEffect(() => {
-    if (checkedList.length === 15) {
-    }
-  });
-
   return (
     <CategoryContainer>
       <div
         className="px-4 font-medium text-section-title-2 mb-10 text-gray-800 flex justify-between items-center"
-        onClick={onCheckReset}
-      >
+        onClick={onCheckReset}>
         필터 <Refresh className="cursor-pointer" />
       </div>
       <ListItemButton onClick={handleClick}>
@@ -81,13 +78,7 @@ const Category = () => {
             <CategoryCheckBox
               id="all"
               onChange={(e) => onCheckedAll(e.target.checked)}
-              checked={
-                checkedList.length === 0
-                  ? false
-                  : checkedList.length === CategoryType.length
-                  ? true
-                  : false
-              }
+              checked={checkedList.length === 0 ? false : checkedList.length === CategoryType.length ? true : false}
             />
             <CategoryLabel htmlFor="all">전체</CategoryLabel>
             <div className="text-gray-800 text-sm">123</div>
@@ -116,15 +107,14 @@ const Category = () => {
             min={0}
             step={1}
             max={100000}
-            getAriaLabel={() => "Temperature range"}
+            getAriaLabel={() => 'Temperature range'}
             value={priceRange}
             onChange={handleChange}
             getAriaValueText={valuetext}
           />
           <div className="flex justify-between items-center">
-            <HowMuch>{priceRange[0]}원</HowMuch>
-            <div>-</div>
-            <HowMuch>{priceRange[1]}원</HowMuch>
+            <HowMuch type="number" value={priceRange[0]} onChange={inputChangePrev} />원<div>-</div>
+            <HowMuch type="number" value={priceRange[1]} onChange={inputChangeNext} />원
           </div>
         </div>
       </Collapse>
