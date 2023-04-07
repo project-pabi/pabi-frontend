@@ -12,7 +12,7 @@ import {
 } from "./SignIn.style";
 import Logo from "./logo.svg";
 import { Link } from "react-router-dom";
-import warn from "./warn.png";
+import warn from "@assets/images/warn.png";
 import Penguin from "./penguin.png";
 
 interface FormValues {

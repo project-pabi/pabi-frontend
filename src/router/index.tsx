@@ -14,7 +14,6 @@ export default function index() {
   return (
     <Router>
       <Routes>
-
         <Route path="/" element={<Main />}>
           {Write}
           <Route path="profile" element={<ProfilePage />} />
