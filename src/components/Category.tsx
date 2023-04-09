@@ -1,6 +1,6 @@
 import { ExpandLess, ExpandMore, Refresh } from '@mui/icons-material';
 import { Collapse, List, ListItemButton, ListItemText } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { CategoryCheckBox, CategoryDiv, CategoryLabel, HowMuch, PrettoSlider } from './Auction/RealTime.style';
 import tw from 'twin.macro';
 import CategoryType from './Auction/CategoryData';
