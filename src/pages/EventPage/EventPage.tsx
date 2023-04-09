@@ -1,13 +1,6 @@
-import Event from "../../components/Event/Event";
-import Footer from "../../components/Footer/Footer";
-import Navbar from "../../components/Navbar/Navbar";
+import Event from '../../components/Event/Event';
+
 function EventPage() {
-  return (
-    <>
-      <Navbar />
-      <Event />
-      <Footer />
-    </>
-  );
+  return <Event />;
 }
 export default EventPage;
