@@ -9,6 +9,12 @@ import SignInPage from '../pages/SignInPage/SignInPage';
 import SignUpPage from '../pages/SignUpPage/SignUpPage';
 import Main from '../pages/Main';
 import { Write } from '@router/write';
+import FAQPage from '@/pages/FAQPage/FAQPage';
+import FAQDetailPage from '@/pages/FAQPage/FAQDetailPage';
+import FAQCategoryPage from '@/pages/FAQPage/FAQCategoryPage';
+import WithdrawPage from '@/pages/WithdrawPage/WithdrawPage';
+import AgreeWithdrawPage from '@/pages/WithdrawPage/AgreeWithdrawlPage';
+import WithdrawEndPage from '@/pages/WithdrawPage/WithdrawEndPage';
 
 export default function index() {
   return (
@@ -18,11 +24,21 @@ export default function index() {
           {Write}
           <Route path="profile" element={<ProfilePage />} />
           <Route path="realtime" element={<RealtimePage />} />
+
+          <Route path="faq">
+            <Route index element={<FAQPage />} />
+            <Route path="category/:id" element={<FAQCategoryPage />}>
+              {/* <Route path="detail/:id" element={<FAQDetailPage />} /> */}
+            </Route>
+          </Route>
           <Route path="event">
             <Route index element={<EventPage />} />
             <Route path="detail/:id" element={<EventDetailPage />} />
           </Route>
         </Route>
+        <Route path="/withdraw" element={<WithdrawPage />} />
+        <Route path="/agreewithdraw" element={<AgreeWithdrawPage />} />
+        <Route path="/withdrawend" element={<WithdrawEndPage />} />
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/signend" element={<SignEndPage />} />
