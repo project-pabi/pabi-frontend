@@ -10,7 +10,7 @@ export default function WithdrawEnd() {
       </p>
       <img src={endIg} alt="endIg" className="w-[370px] mx-auto" />
       <Link to="/">
-        <button className="bg-primary w-32 h-10 mb-40 text-white  text-sm rounded-5">홈으로 돌아가기</button>
+        <button className="bg-primary w-[384px] h-10 mb-40 text-white  text-sm rounded-5">홈으로 돌아가기</button>
       </Link>
     </div>
   );
