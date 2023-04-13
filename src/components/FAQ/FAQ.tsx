@@ -1,15 +1,20 @@
 import { Category, CategoryBox, PopularBox, PopularTitle, PopularValue, SubTitle, Title } from './FAQ.style';
 import SearchIcon from '@mui/icons-material/Search';
-import FAQData from './FAQPopularData';
 import { Link } from 'react-router-dom';
+import FAQPopularData from './FAQPopularData';
 import FAQCategoryData from './FAQCategoryData';
 import { useState } from 'react';
+import { Collapse, List, ListItemButton, ListItemText } from '@mui/material';
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
 
 const FAQ = () => {
-  const truncate = (str: string, n: number) => {
-    return str?.length > n ? str.substr(0, n - 1) + '...' : str;
+  const [isOpen, setIsOpen] = useState<boolean[]>([]);
+
+  const handleClick = (index: number) => {
+    const newIsOpen = [...isOpen];
+    newIsOpen[index] = !newIsOpen[index];
+    setIsOpen(newIsOpen);
   };
-  const [clickedItemId, setClickedItemId] = useState<number | null>(null);
 
   return (
     <>
@@ -27,17 +32,26 @@ const FAQ = () => {
       </div>
       <div className="text-section-title-1 mb-5">인기 질문</div>
       <PopularBox>
-        {FAQData.map((data) => {
-          const valueLength = data.id === clickedItemId ? 500 : 60;
+        {FAQPopularData.map((data, index) => {
           return (
-            <div
-              className="p-[10px] min-h-[126px] pb-8 border-solid border-b-2 border-gray-300 box-content mb-[30px]"
-              key={data.id}>
-              <PopularTitle
-                onClick={() => setClickedItemId((prevClickedItemId) => (prevClickedItemId === data.id ? null : data.id))}>
-                {data.title}
-              </PopularTitle>
-              <PopularValue>{truncate(data.value, valueLength)}</PopularValue>
+            <div key={index}>
+              <ListItemButton style={{ padding: 0 }} onClick={() => handleClick(index)}>
+                <ListItemText
+                  primary={
+                    <div className="flex items-center py-4 border-solid border-b-2 border-gray-300 cursor-pointer">
+                      <div className="text-primary font-bold text-base mr-[10px]">Q.</div>
+                      <div className="text-sm font-medium">{data.title}</div>
+                    </div>
+                  }
+                />
+                {isOpen[index] ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              <Collapse in={isOpen[index]} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding></List>
+                <div className="flex items-center py-4 border-solid border-b-2 border-gray-300 cursor-pointer mr-6">
+                  <div className="text-sm font-medium">{data.value}</div>
+                </div>
+              </Collapse>
             </div>
           );
         })}

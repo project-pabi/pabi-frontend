@@ -7,7 +7,7 @@ export const SubTitle = tw.div`
 text-base mt-3 mb-[2px]
 `;
 export const PopularBox = tw.div`
-grid grid-cols-3 gap-x-6
+mb-[38px]
 `;
 export const PopularTitle = tw.div`
 text-base font-bold mb-[10px] hover:underline hover:decoration-2 cursor-pointer

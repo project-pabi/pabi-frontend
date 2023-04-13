@@ -29,7 +29,7 @@ const FAQCategory = () => {
       <div className="text-section-title-1 mb-5">{event.title}</div>
       {event.value.map((data, index) => {
         return (
-          <>
+          <div key={index}>
             <ListItemButton style={{ padding: 0 }} onClick={() => handleClick(index)}>
               <ListItemText
                 primary={
@@ -41,11 +41,13 @@ const FAQCategory = () => {
               />
               {isOpen[index] ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
-            <Collapse in={isOpen[index]} timeout="auto" unmountOnExit className="pl-4">
+            <Collapse in={isOpen[index]} timeout="auto" unmountOnExit>
               <List component="div" disablePadding></List>
-              <div>{data}</div>
+              <div className="flex items-center py-4 border-solid border-b-2 border-gray-300 cursor-pointer mr-6">
+                <div className="text-sm font-medium">{data}</div>
+              </div>
             </Collapse>
-          </>
+          </div>
         );
       })}
     </div>
