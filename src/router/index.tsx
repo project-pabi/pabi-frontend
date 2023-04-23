@@ -10,11 +10,11 @@ import SignUpPage from '../pages/SignUpPage/SignUpPage';
 import Main from '../pages/Main';
 import { Write } from '@router/write';
 import FAQPage from '@/pages/FAQPage/FAQPage';
-import FAQDetailPage from '@/pages/FAQPage/FAQDetailPage';
 import FAQCategoryPage from '@/pages/FAQPage/FAQCategoryPage';
 import WithdrawPage from '@/pages/WithdrawPage/WithdrawPage';
 import AgreeWithdrawPage from '@/pages/WithdrawPage/AgreeWithdrawlPage';
 import WithdrawEndPage from '@/pages/WithdrawPage/WithdrawEndPage';
+import RealTimeDetail from '@/components/Auction/RealTimeDetail';
 
 export default function index() {
   return (
@@ -23,7 +23,10 @@ export default function index() {
         <Route path="/" element={<Main />}>
           {Write}
           <Route path="profile" element={<ProfilePage />} />
-          <Route path="realtime" element={<RealtimePage />} />
+          <Route path="realtime">
+            <Route index element={<RealtimePage />} />
+            <Route path="detail/:id" element={<RealTimeDetail />} />
+          </Route>
 
           <Route path="faq">
             <Route index element={<FAQPage />} />
